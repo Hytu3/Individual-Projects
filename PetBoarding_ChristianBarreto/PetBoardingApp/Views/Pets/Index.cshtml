@@ -1,7 +1,35 @@
-﻿@{
-    ViewBag.Title = "Manage Pets";
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
+﻿@model PetBoardingApp.ViewModels.PetViewModel
+
+@{
+    ViewBag.Title = "Add Pet!";
 }
 
-<h1>Manage Pets Page</h1>
-<p>This is the Manage Pets page where users can manage their pets.</p>
+<h2>Add new Pet!</h2>
+
+@using (Html.BeginForm("Create", "Pets", FormMethod.Post))
+{
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required" })
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Breed</label>
+        @Html.TextBoxFor(m => m.Breed, new { @class = "form-control", required = "required" })
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Age</label>
+        @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add new pet</button>
+}
+
+<br />
+<h3>Delete Pet</h3>
+
+@using (Html.BeginForm("Delete", "Pets", FormMethod.Post))
+{
+    <button type="submit" class="btn btn-primary">Delete Pet</button>
+}

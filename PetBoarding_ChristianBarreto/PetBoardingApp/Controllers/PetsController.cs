@@ -2,6 +2,8 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+    using PetBoardingApp.Models;
+    using PetBoardingApp.ViewModels;
 ﻿    using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -11,7 +13,6 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-    using PetBoardingApp.Models;
 
     namespace PetBoardingApp.Controllers
     {
@@ -20,50 +21,60 @@
             // GET: Pets
             public ActionResult Index()
             {
-                return View();
+                var model = new PetViewModel();
+                return View(model);
             }
 
-        // Basic CRUD Operations
-        public ActionResult Create(string name, string breed, int age, Guid petOwnerID)
-        {
-            // Connect to database
-            ApplicationDbContext dbContext = new ApplicationDbContext();
+            // Basic CRUD Operations
 
-            // Get the Pet Owner first
-            var petOwner = dbContext.PetOwners.Find(petOwnerID);
+            [HttpGet]
+            public ActionResult Create()
+            {
+                return View(new PetViewModel());
+            }
+
+
+            [HttpPost]    
+            public ActionResult Create(string name, string breed, int age, Guid petOwnerID)
+            {
+                // Connect to database
+                ApplicationDbContext dbContext = new ApplicationDbContext();
+
+                // Get the Pet Owner first
+                var petOwner = dbContext.PetOwners.Find(petOwnerID);
             
-            if (petOwner == null)
-            {
-                return Content("Error: PetOwner not found");
-            }
+                if (petOwner == null)
+                {
+                    return Content("Error: PetOwner not found");
+                }
 
-            // Create the object
-            Pet pet = new Pet();
-            pet.Name = name;
-            pet.Breed = breed;
-            pet.Age = age;
-            pet.PetOwnerID = petOwnerID;
+                // Create the object
+                Pet pet = new Pet();
+                pet.Name = name;
+                pet.Breed = breed;
+                pet.Age = age;
+                pet.PetOwnerID = petOwnerID;
             
-            // Navigation property
-            pet.PetOwner = petOwner; 
+                // Navigation property
+                pet.PetOwner = petOwner; 
 
-            // Add to database
-            dbContext.Pets.Add(pet);
+                // Add to database
+                dbContext.Pets.Add(pet);
 
-            try
-            {
-                dbContext.SaveChanges();
+                try
+                {
+                    dbContext.SaveChanges();
+                }
+                catch
+                {
+                    ;
+                }
+
+                return Content("Create");
             }
-            catch
-            {
-                ;
-            }
-
-            return Content("Create");
-        }
 
 
-        public ActionResult Read(Guid id) 
+            public ActionResult Read(Guid id) 
             {
                 // Connect to database
                 ApplicationDbContext dbContext = new ApplicationDbContext();
@@ -106,6 +117,7 @@
                 return Content("Update");
             }
 
+            [HttpPost]
             public ActionResult Delete(Guid id) 
             {
                 // Connect to database

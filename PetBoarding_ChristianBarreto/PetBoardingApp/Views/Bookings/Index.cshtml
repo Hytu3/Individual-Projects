@@ -1,7 +1,35 @@
-﻿@{
-    ViewBag.Title = "Manage Bookings";
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
+﻿@model PetBoardingApp.ViewModels.BookingViewModel
+
+@{
+    ViewBag.Title = "Schedule Booking";
 }
 
-<h1>Manage Bookings Page</h1>
-<p>This is the Manage Bookings page where users can manage their bookings.</p>
+<h2>Schedule Booking!</h2>
+
+@using (Html.BeginForm("Create", "Bookings", FormMethod.Post))
+{
+    <div class="mb-3">
+        <label class="form-label">StartTime</label>
+        @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control", required = "required" })
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">EndTime</label>
+        @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control", required = "required" })
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Pet</label>
+        @Html.TextBoxFor(m => m.Pet, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Schedule booking</button>
+}
+
+<br />
+<h3>Delete Booking</h3>
+
+@using (Html.BeginForm("Delete", "Bookings", FormMethod.Post))
+{
+    <button type="submit" class="btn btn-primary">Delete Booking</button>
+}

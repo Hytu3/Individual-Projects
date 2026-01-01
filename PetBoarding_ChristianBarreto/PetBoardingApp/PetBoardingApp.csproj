@@ -183,6 +183,7 @@
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="ViewModels\BookingViewModel.cs" />
     <Compile Include="ViewModels\ContactUsViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Pet.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Models\PetOwner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\PetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -256,6 +258,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\ContactUs\ContactUsSuccessful.cshtml" />
     <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\Pets\Index.cshtml" />
+    <Content Include="Views\Bookings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

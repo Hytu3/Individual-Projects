@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using PetBoardingApp.Models;
+using PetBoardingApp.ViewModels;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using PetBoardingApp.Models;
 
 namespace PetBoardingApp.Controllers
 {
@@ -17,10 +18,20 @@ namespace PetBoardingApp.Controllers
         // GET: Bookings
         public ActionResult Index()
         {
-            return View();
+            var model = new BookingViewModel();
+            return View(model);
         }
 
         // Basic CRUD Operations
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View(new BookingViewModel());
+        }
+
+
+        [HttpPost]
         public ActionResult Create(DateTime startTime, DateTime endTime, DateTime checkInTime, DateTime checkOutTime, string status, int cost, Guid petOwnerID, Guid petID, Guid employeeID)
         {
             // Connect to database
@@ -132,6 +143,7 @@ namespace PetBoardingApp.Controllers
             return Content("Update");
         }
 
+        [HttpPost]
         public ActionResult Delete(Guid id)
         {
             // Connect to database
