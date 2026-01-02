@@ -166,6 +166,7 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\PetCaresController.cs" />
     <Compile Include="Controllers\PetsController.cs" />
     <Compile Include="Controllers\PetOwnersController.cs" />
@@ -260,6 +261,7 @@
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Pets\Index.cshtml" />
     <Content Include="Views\Bookings\Index.cshtml" />
+    <Content Include="Views\MyAccount\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

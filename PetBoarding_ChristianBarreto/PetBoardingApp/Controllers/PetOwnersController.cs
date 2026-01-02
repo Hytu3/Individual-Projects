@@ -1,3 +1,8 @@
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using PetBoardingApp.Models;
+using PetBoardingApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,22 +12,27 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using PetBoardingApp.Models;
 
 namespace PetBoardingApp.Controllers
 {
     public class PetOwnersController : Controller
     {
-        // GET: PetOwners
+        // GET: Bookings
         public ActionResult Index()
         {
-            return View();
+            var model = new PetOwnerViewModel();
+            return View(model);
         }
 
         // Basic CRUD Operations
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View(new PetOwnerViewModel());
+        }
+
+        [HttpPost]
         public ActionResult Create(string name, string gender, int age)
         {
             // Connect to database
@@ -50,6 +60,7 @@ namespace PetBoardingApp.Controllers
 
         }
 
+        [HttpGet]
         public ActionResult Read(Guid id)
         {
             // Connect to database
@@ -95,6 +106,7 @@ namespace PetBoardingApp.Controllers
             return Content("Update");
         }
 
+        [HttpPost]
         public ActionResult Delete(Guid id)
         {
             // Connect to database

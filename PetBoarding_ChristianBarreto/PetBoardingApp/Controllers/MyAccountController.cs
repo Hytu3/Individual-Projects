@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using WebAppTemplate.Models;
+using PetBoardingApp.Models;
 
 namespace WebAppTemplate.Controllers
 {
@@ -19,5 +19,6 @@ namespace WebAppTemplate.Controllers
         {
             return View();
         }
+
     }
 }
