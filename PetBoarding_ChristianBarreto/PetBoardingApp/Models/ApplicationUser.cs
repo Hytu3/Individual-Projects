@@ -12,6 +12,12 @@ namespace PetBoardingApp.Models
         // Added recovery email for user registration page
         public string RecoveryEmail { get; set; }
 
+        public string Name { get; set; }
+
+        public string Gender { get; set; }
+
+        public int Age { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

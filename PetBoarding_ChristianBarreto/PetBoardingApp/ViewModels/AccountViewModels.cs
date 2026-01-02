@@ -85,6 +85,20 @@ namespace PetBoardingApp.Models
         [Display(Name = "Recovery Email")]
         public string Recovery_Email { get; set; }
 
+
+        [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
+
+        [Required]
+        [Display(Name = "Age")]
+        public int Age { get; set; }
+
+
         [Required]
         [Phone]
         [Display(Name = "Phone Number")]

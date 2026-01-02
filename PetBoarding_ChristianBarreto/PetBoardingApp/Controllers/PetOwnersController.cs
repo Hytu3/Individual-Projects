@@ -20,17 +20,10 @@ namespace PetBoardingApp.Controllers
         // GET: Bookings
         public ActionResult Index()
         {
-            var model = new PetOwnerViewModel();
-            return View(model);
+            return View();
         }
 
         // Basic CRUD Operations
-
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View(new PetOwnerViewModel());
-        }
 
         [HttpPost]
         public ActionResult Create(string name, string gender, int age)

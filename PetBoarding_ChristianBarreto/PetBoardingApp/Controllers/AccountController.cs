@@ -107,30 +107,25 @@ namespace PetBoardingApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, RecoveryEmail = model.Recovery_Email, PhoneNumber = model.Phone_Number };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, RecoveryEmail = model.Recovery_Email, Name = model.Name, Gender = model.Gender, Age = model.Age, PhoneNumber = model.Phone_Number };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
                     // Creates corresponding petowner
-                    // We use a using block to ensure the database connection closes properly
-                    /*using (ApplicationDbContext db = new ApplicationDbContext())
+                    using (ApplicationDbContext db = new ApplicationDbContext())
                     {
                         var newOwner = new PetOwner
                         {
-                            // Mapping the Identity User ID to the PetOwnerID
-                            // Note: Identity User IDs are strings, so we parse to Guid
-                            PetOwnerID = Guid.Parse(user.Id),
-                            Name = model.Email, // You can change this to a 'FullName' if your model has it
-                            Email = model.Email,
-                            // Map other properties if your PetOwner model has them
+                            PetOwnerId = Guid.Parse(user.Id),
+                            Name = model.Name,
+                            Gender = model.Gender,
+                            Age = model.Age,
                         };
 
                         db.PetOwners.Add(newOwner);
                         db.SaveChanges();
                     }
-                    */
-                    // --- CREATE PARALLEL PETOWNER END ---
 
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
