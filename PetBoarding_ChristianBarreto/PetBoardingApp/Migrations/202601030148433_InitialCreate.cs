@@ -120,6 +120,9 @@
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         RecoveryEmail = c.String(),
+                        Name = c.String(),
+                        Gender = c.String(),
+                        Age = c.Int(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),

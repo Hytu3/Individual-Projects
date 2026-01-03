@@ -9,6 +9,10 @@
 @using (Html.BeginForm("Create", "Pets", FormMethod.Post))
 {
     <div class="mb-3">
+        <label class="form-label">PetOwnerId</label>
+        @Html.TextBoxFor(m => m.PetOwnerId, new { @class = "form-control", required = "required" })
+    </div>
+    <div class="mb-3">
         <label class="form-label">Name</label>
         @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required" })
     </div>

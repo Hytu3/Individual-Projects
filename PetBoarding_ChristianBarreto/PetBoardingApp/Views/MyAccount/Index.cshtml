@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+
+@{
     ViewBag.Title = "My Account";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
@@ -7,6 +9,11 @@
 
 <br />
 <h2>View Account Info!</h2>
+
+
+<div class="alert alert-info">
+    Your Pet Owner ID: <strong>@User.Identity.GetUserId()</strong>
+</div>
 
 <br />
 

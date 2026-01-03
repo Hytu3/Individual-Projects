@@ -7,13 +7,13 @@ namespace PetBoardingApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class LinkedUsertoPetOwner : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(LinkedUsertoPetOwner));
         
         string IMigrationMetadata.Id
         {
-            get { return "202512310615541_InitialCreate"; }
+            get { return "202601030301544_LinkedUsertoPetOwner"; }
         }
         
         string IMigrationMetadata.Source

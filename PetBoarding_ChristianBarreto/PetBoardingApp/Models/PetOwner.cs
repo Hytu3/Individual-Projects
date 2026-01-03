@@ -19,11 +19,6 @@ namespace PetBoardingApp.Models
 
         public int Age { get; set; }
 
-        public PetOwner()
-        {
-            PetOwnerId = Guid.NewGuid();
-        }
-
         // One to many relationships
         public virtual List<Pet> Pets { get; set; }
 
