@@ -266,6 +266,7 @@
     <Content Include="Views\Pets\Index.cshtml" />
     <Content Include="Views\Bookings\Index.cshtml" />
     <Content Include="Views\MyAccount\Index.cshtml" />
+    <Content Include="Views\Account\Read.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

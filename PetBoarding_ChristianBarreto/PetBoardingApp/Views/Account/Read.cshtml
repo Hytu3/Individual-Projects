@@ -1,0 +1,15 @@
+@model PetBoardingApp.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Account Details";
+}
+
+<h2>Account Information</h2>
+
+<div class="profile-display">
+    <p><strong>Full Name:</strong> @Model.Name</p>
+    <p><strong>Username:</strong> @Model.UserName</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Phone:</strong> @Model.PhoneNumber</p>
+
+</div>

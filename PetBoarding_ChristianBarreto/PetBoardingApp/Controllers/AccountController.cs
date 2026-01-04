@@ -298,7 +298,7 @@ namespace PetBoardingApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        
+
 
         protected override void Dispose(bool disposing)
         {
@@ -318,6 +318,29 @@ namespace PetBoardingApp.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        
+        // Added method
+        [HttpGet]
+        public ActionResult Read(string id)
+        {
+            // Connect to database
+            ApplicationDbContext dbContext = new ApplicationDbContext();
+
+            // Query the database
+            ApplicationUser user = dbContext.Users.FirstOrDefault(x => x.Id == id);
+
+            // Validate and return
+            if (user == null)
+            {
+                return Content("No user found with that ID");
+
+            }
+
+            // Return important info
+            return View(user);
+
         }
 
         #region Helpers

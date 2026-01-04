@@ -11,9 +11,20 @@
 <h2>View Account Info!</h2>
 
 
-<div class="alert alert-info">
-    Your Pet Owner ID: <strong>@User.Identity.GetUserId()</strong>
-</div>
-
 <br />
+
+@if (Request.IsAuthenticated)
+{
+    <div class="Account info">
+        Your Pet Owner ID: <strong>@User.Identity.GetUserId()</strong>
+    </div>
+
+    <br />
+    
+    <li>
+        @Html.ActionLink("My Profile", "Read", "Account",
+            new { id = User.Identity.GetUserId() },
+            null)
+    </li>
+}
 
