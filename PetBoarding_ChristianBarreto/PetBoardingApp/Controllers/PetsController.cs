@@ -35,13 +35,19 @@
 
 
             [HttpPost]    
-            public ActionResult Create(string name, string breed, int age, Guid petOwnerID)
+            public ActionResult Create(string name, string breed, int age)
             {
                 // Connect to database
                 ApplicationDbContext dbContext = new ApplicationDbContext();
 
+                // Get the current user's ID as a string
+                string userIdString = User.Identity.GetUserId();
+
+                // Convert it to a Guid 
+                Guid userGuid = Guid.Parse(userIdString);
+
                 // Get the Pet Owner first
-                var petOwner = dbContext.PetOwners.Find(petOwnerID);
+                var petOwner = dbContext.PetOwners.Find(userGuid);
             
                 if (petOwner == null)
                 {
@@ -53,7 +59,7 @@
                 pet.Name = name;
                 pet.Breed = breed;
                 pet.Age = age;
-                pet.PetOwnerID = petOwnerID;
+                pet.PetOwnerID = petOwner.PetOwnerId;
             
                 // Navigation property
                 pet.PetOwner = petOwner; 

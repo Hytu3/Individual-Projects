@@ -7,7 +7,6 @@ namespace PetBoardingApp.ViewModels
 {
     public class PetViewModel
     {
-        public Guid PetOwnerId { get; set; }
         
         public string Name { get; set; }
 
