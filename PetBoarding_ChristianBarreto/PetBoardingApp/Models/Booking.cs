@@ -20,15 +20,15 @@ namespace PetBoardingApp.Models
         public DateTime EndTime { get; set; }
 
         [Required]
+        public string PetName { get; set; }
+
+        
         public DateTime CheckInTime { get; set; }
 
-        [Required]
         public DateTime CheckOutTime { get; set; }
 
-        [Required]
         public string Status { get; set; }
 
-        [Required]
         public int Cost { get; set; }
 
         [Required]
@@ -36,23 +36,21 @@ namespace PetBoardingApp.Models
         public Guid PetOwnerID { get; set; }
 
         [Required]
-        [ForeignKey("Employee")]
-        public Guid EmployeeID { get; set; }
-
-        [Required]
         [ForeignKey("Pet")]
         public Guid PetID { get; set; }
 
+        public Guid? EmployeeID { get; set; }
+
         // Petowner is the parent
         // One to many relationship
-        
-        [Required]
+
+
         public virtual PetOwner PetOwner { get; set; }
 
         // Employee is the parent
         // One to many relationship
 
-        [Required]
+        
         public virtual Employee Employee { get; set; }
 
         // Pet is the parent
@@ -65,10 +63,6 @@ namespace PetBoardingApp.Models
         public Booking()
         {
             BookingId = Guid.NewGuid();
-            CheckInTime = DateTime.UtcNow;
-            CheckOutTime = DateTime.UtcNow;
-            StartTime = DateTime.UtcNow;
-            EndTime = DateTime.UtcNow;
         }
     }
 }

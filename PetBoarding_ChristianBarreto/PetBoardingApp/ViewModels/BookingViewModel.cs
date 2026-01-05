@@ -12,6 +12,6 @@ namespace PetBoardingApp.ViewModels
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 
-        public Pet Pet { get; set; }
+        public string PetName { get; set; }
     }
 }

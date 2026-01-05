@@ -32,33 +32,32 @@ namespace PetBoardingApp.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(DateTime startTime, DateTime endTime, DateTime checkInTime, DateTime checkOutTime, string status, int cost, Guid petOwnerID, Guid petID, Guid employeeID)
+        public ActionResult Create(DateTime startTime, DateTime endTime, string petName)
         {
             // Connect to database
             ApplicationDbContext dbContext = new ApplicationDbContext();
 
             // Get the Pet Owner first
-            var petOwner = dbContext.PetOwners.Find(petOwnerID);
-            
+
+            // Get the current user's ID as a string
+            string userIdString = User.Identity.GetUserId();
+
+            // Convert it to a Guid 
+            Guid userGuid = Guid.Parse(userIdString);
+
+            var petOwner = dbContext.PetOwners.Find(userGuid);
+
             if (petOwner == null)
             {
                 return Content("Error: PetOwner not found");
             }
 
-            // Get the Pet first
-            var pet = dbContext.Pets.Find(petID);
+            // Make sure owner has this pet
+            var pet = dbContext.Pets.FirstOrDefault(p => p.Name == petName && p.PetOwnerID == userGuid);
 
             if (pet == null)
             {
-                return Content("Error: Pet not found");
-            }
-
-            // Get the Employee first
-            var employee = dbContext.Employees.Find(employeeID);
-
-            if (employee == null)
-            {
-                return Content("Error: Employee not found");
+                return Content("Error: You don't have a pet named " + petName);
             }
 
 
@@ -66,18 +65,23 @@ namespace PetBoardingApp.Controllers
             Booking booking = new Booking();
             booking.StartTime = startTime;
             booking.EndTime = endTime;
-            booking.CheckInTime = checkInTime;
-            booking.CheckOutTime = checkOutTime;
-            booking.Status = status;
-            booking.Cost = cost;
-            booking.PetOwnerID = petOwnerID;
-            booking.PetID = petID;
-            booking.EmployeeID = employeeID;
+            booking.PetName = petName;
+            booking.Status = "Pending";
+            booking.PetOwnerID = petOwner.PetOwnerId;
+            booking.PetID = pet.PetId;
+            booking.Cost = 0;
+
+            // Set check-in time and check-out time to startime and endtime
+            // Employee side must update these fields
+            booking.CheckInTime = startTime;
+            booking.CheckOutTime = endTime;
+
 
             // Navigation properties
             booking.PetOwner = petOwner;
             booking.Pet = pet;
-            booking.Employee = employee;
+            booking.Employee = null;
+
 
             // Add to database
             dbContext.Bookings.Add(booking);
@@ -85,14 +89,21 @@ namespace PetBoardingApp.Controllers
             try
             {
                 dbContext.SaveChanges();
+
+                return RedirectToAction("BookingSuccessful");
             }
             catch
             {
                 ;
             }
 
-            return Content("Create");
+            return Content("Failed");
 
+        }
+
+        public ActionResult BookingSuccessful()
+        {
+            return View();
         }
 
         public ActionResult Read(Guid id)

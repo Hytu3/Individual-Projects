@@ -39,30 +39,27 @@ namespace PetBoardingApp.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            // ALL CASCADE DELETES DISABLED
-
-            // PetOwner -> Pets: NO CASCADE (handle manually)
+            // PetOwner -> Pets: NO CASCADE
             modelBuilder.Entity<Pet>()
                 .HasRequired(p => p.PetOwner)
                 .WithMany(o => o.Pets)
                 .HasForeignKey(p => p.PetOwnerID)
                 .WillCascadeOnDelete(false);
 
-            // Pet -> Bookings: NO CASCADE (handle manually)
+            // Pet -> Bookings: NO CASCADE
             modelBuilder.Entity<Booking>()
                 .HasRequired(b => b.Pet)
                 .WithMany(p => p.Bookings)
-                .HasForeignKey(b => b.PetID)
                 .WillCascadeOnDelete(false);
 
-            // Employee -> Bookings: NO CASCADE (handle manually)
+            // UPDATED: Employee -> Bookings (Changed to Optional)
             modelBuilder.Entity<Booking>()
-                .HasRequired(b => b.Employee)
+                .HasOptional(b => b.Employee) // This allows NULL in the database
                 .WithMany(e => e.Bookings)
-                .HasForeignKey(b => b.EmployeeID)
+                .HasForeignKey(b => b.EmployeeID) // Ensure this property exists in Booking.cs as Guid?
                 .WillCascadeOnDelete(false);
 
-            // PetOwner -> Bookings: NO CASCADE (handle manually)
+            // PetOwner -> Bookings: NO CASCADE
             modelBuilder.Entity<Booking>()
                 .HasRequired(b => b.PetOwner)
                 .WithMany(o => o.Bookings)

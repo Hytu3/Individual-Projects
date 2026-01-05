@@ -181,6 +181,34 @@
     <Compile Include="Migrations\202601030301544_LinkedUsertoPetOwner.Designer.cs">
       <DependentUpon>202601030301544_LinkedUsertoPetOwner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202601042145466_ChangedBookingModel.cs" />
+    <Compile Include="Migrations\202601042145466_ChangedBookingModel.Designer.cs">
+      <DependentUpon>202601042145466_ChangedBookingModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601042205220_ChangedBookingModel2.cs" />
+    <Compile Include="Migrations\202601042205220_ChangedBookingModel2.Designer.cs">
+      <DependentUpon>202601042205220_ChangedBookingModel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601042215365_ChangedBookingModel3.cs" />
+    <Compile Include="Migrations\202601042215365_ChangedBookingModel3.Designer.cs">
+      <DependentUpon>202601042215365_ChangedBookingModel3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601050009119_ChangedBookingModel4.cs" />
+    <Compile Include="Migrations\202601050009119_ChangedBookingModel4.Designer.cs">
+      <DependentUpon>202601050009119_ChangedBookingModel4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601050017529_ChangedBookingModel5.cs" />
+    <Compile Include="Migrations\202601050017529_ChangedBookingModel5.Designer.cs">
+      <DependentUpon>202601050017529_ChangedBookingModel5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601050046340_ChangedBookingModel6.cs" />
+    <Compile Include="Migrations\202601050046340_ChangedBookingModel6.Designer.cs">
+      <DependentUpon>202601050046340_ChangedBookingModel6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202601050437396_ChangedBookingModel7.cs" />
+    <Compile Include="Migrations\202601050437396_ChangedBookingModel7.Designer.cs">
+      <DependentUpon>202601050437396_ChangedBookingModel7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -267,6 +295,8 @@
     <Content Include="Views\Bookings\Index.cshtml" />
     <Content Include="Views\MyAccount\Index.cshtml" />
     <Content Include="Views\Account\Read.cshtml" />
+    <Content Include="Views\Bookings\BookingSuccessful.cshtml" />
+    <Content Include="Views\Pets\PetSuccessful.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -304,6 +334,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202601030301544_LinkedUsertoPetOwner.resx">
       <DependentUpon>202601030301544_LinkedUsertoPetOwner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601042145466_ChangedBookingModel.resx">
+      <DependentUpon>202601042145466_ChangedBookingModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601042205220_ChangedBookingModel2.resx">
+      <DependentUpon>202601042205220_ChangedBookingModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601042215365_ChangedBookingModel3.resx">
+      <DependentUpon>202601042215365_ChangedBookingModel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601050009119_ChangedBookingModel4.resx">
+      <DependentUpon>202601050009119_ChangedBookingModel4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601050017529_ChangedBookingModel5.resx">
+      <DependentUpon>202601050017529_ChangedBookingModel5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601050046340_ChangedBookingModel6.resx">
+      <DependentUpon>202601050046340_ChangedBookingModel6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601050437396_ChangedBookingModel7.resx">
+      <DependentUpon>202601050437396_ChangedBookingModel7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -31,56 +31,63 @@
             public ActionResult Create()
             {
                 return View(new PetViewModel());
-            }
+        }
 
 
-            [HttpPost]    
-            public ActionResult Create(string name, string breed, int age)
+        [HttpPost]
+        public ActionResult Create(string name, string breed, int age)
+        {
+            // Connect to database
+            ApplicationDbContext dbContext = new ApplicationDbContext();
+
+            // Get the current user's ID as a string
+            string userIdString = User.Identity.GetUserId();
+
+            // Convert it to a Guid 
+            Guid userGuid = Guid.Parse(userIdString);
+
+            // Get the Pet Owner first
+            var petOwner = dbContext.PetOwners.Find(userGuid);
+
+            if (petOwner == null)
             {
-                // Connect to database
-                ApplicationDbContext dbContext = new ApplicationDbContext();
-
-                // Get the current user's ID as a string
-                string userIdString = User.Identity.GetUserId();
-
-                // Convert it to a Guid 
-                Guid userGuid = Guid.Parse(userIdString);
-
-                // Get the Pet Owner first
-                var petOwner = dbContext.PetOwners.Find(userGuid);
-            
-                if (petOwner == null)
-                {
-                    return Content("Error: PetOwner not found");
-                }
-
-                // Create the object
-                Pet pet = new Pet();
-                pet.Name = name;
-                pet.Breed = breed;
-                pet.Age = age;
-                pet.PetOwnerID = petOwner.PetOwnerId;
-            
-                // Navigation property
-                pet.PetOwner = petOwner; 
-
-                // Add to database
-                dbContext.Pets.Add(pet);
-
-                try
-                {
-                    dbContext.SaveChanges();
-                }
-                catch
-                {
-                    ;
-                }
-
-                return Content("Create");
+                return Content("Error: PetOwner not found");
             }
 
+            // Create the object
+            Pet pet = new Pet();
+            pet.Name = name;
+            pet.Breed = breed;
+            pet.Age = age;
+            pet.PetOwnerID = petOwner.PetOwnerId;
 
-            public ActionResult Read(Guid id) 
+            // Navigation property
+            pet.PetOwner = petOwner;
+
+            // Add to database
+            dbContext.Pets.Add(pet);
+
+            try
+            {
+                dbContext.SaveChanges();
+
+                return RedirectToAction("PetSuccessful");
+            }
+            catch
+            {
+                ;
+            }
+
+            return Content("Failed");
+        }
+
+        public ActionResult PetSuccessful()
+        {
+            return View();
+        }
+
+
+        public ActionResult Read(Guid id) 
             {
                 // Connect to database
                 ApplicationDbContext dbContext = new ApplicationDbContext();

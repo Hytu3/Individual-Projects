@@ -58,7 +58,7 @@ namespace PetBoardingApp.Controllers
                 ;
             }
 
-            return RedirectToAction("Index");
+            return Content("Failed");
 
         }
 
