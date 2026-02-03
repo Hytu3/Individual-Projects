@@ -31,63 +31,63 @@
             public ActionResult Create()
             {
                 return View(new PetViewModel());
-        }
-
-
-        [HttpPost]
-        public ActionResult Create(string name, string breed, int age)
-        {
-            // Connect to database
-            ApplicationDbContext dbContext = new ApplicationDbContext();
-
-            // Get the current user's ID as a string
-            string userIdString = User.Identity.GetUserId();
-
-            // Convert it to a Guid 
-            Guid userGuid = Guid.Parse(userIdString);
-
-            // Get the Pet Owner first
-            var petOwner = dbContext.PetOwners.Find(userGuid);
-
-            if (petOwner == null)
-            {
-                return Content("Error: PetOwner not found");
             }
 
-            // Create the object
-            Pet pet = new Pet();
-            pet.Name = name;
-            pet.Breed = breed;
-            pet.Age = age;
-            pet.PetOwnerID = petOwner.PetOwnerId;
 
-            // Navigation property
-            pet.PetOwner = petOwner;
-
-            // Add to database
-            dbContext.Pets.Add(pet);
-
-            try
+            [HttpPost]
+            public ActionResult Create(string name, string breed, int age)
             {
-                dbContext.SaveChanges();
+                // Connect to database
+                ApplicationDbContext dbContext = new ApplicationDbContext();
 
-                return RedirectToAction("PetSuccessful");
+                // Get the current user's ID as a string
+                string userIdString = User.Identity.GetUserId();
+
+                // Convert it to a Guid 
+                Guid userGuid = Guid.Parse(userIdString);
+
+                // Get the Pet Owner first
+                var petOwner = dbContext.PetOwners.Find(userGuid);
+
+                if (petOwner == null)
+                {
+                    return Content("Error: PetOwner not found");
+                }
+
+                // Create the object
+                Pet pet = new Pet();
+                pet.Name = name;
+                pet.Breed = breed;
+                pet.Age = age;
+                pet.PetOwnerID = petOwner.PetOwnerId;
+
+                // Navigation property
+                pet.PetOwner = petOwner;
+
+                // Add to database
+                dbContext.Pets.Add(pet);
+
+                try
+                {
+                    dbContext.SaveChanges();
+
+                    return RedirectToAction("PetSuccessful");
+                }
+                catch
+                {
+                    ;
+                }
+
+                return Content("Failed");
             }
-            catch
+
+            public ActionResult PetSuccessful()
             {
-                ;
+                return View();
             }
 
-            return Content("Failed");
-        }
 
-        public ActionResult PetSuccessful()
-        {
-            return View();
-        }
-
-
-        public ActionResult Read(Guid id) 
+            public ActionResult Read(Guid id) 
             {
                 // Connect to database
                 ApplicationDbContext dbContext = new ApplicationDbContext();
@@ -131,17 +131,19 @@
             }
 
             [HttpPost]
-            public ActionResult Delete(Guid id) 
+            public ActionResult Delete(string name) 
             {
                 // Connect to database
                 ApplicationDbContext dbContext = new ApplicationDbContext();
 
                 // Query the database
-                Pet pet = dbContext.Pets.FirstOrDefault(x => x.PetId == id); 
+                Pet pet = dbContext.Pets.FirstOrDefault(x => x.Name == name); 
 
                 if (pet != null)
                 {
 
+                    /* Change database to handle this later
+                
                     // Prevent from bookings being orphaned
                     List<Booking> bookings = pet.Bookings.ToList();
 
@@ -157,14 +159,15 @@
 
                     dbContext.PetCares.Remove(petcareForm);
 
+                    */
 
-
-                // Remove from database
-                dbContext.Pets.Remove(pet);
+                    // Remove from database
+                    dbContext.Pets.Remove(pet);
 
                     try
                     {
                         dbContext.SaveChanges();
+                        return View(pet);
                     }
                     catch
                     {
@@ -174,7 +177,7 @@
                 }
 
 
-                return Content("Delete");
+                return Content("Couldnt find pet name");
             }
         }
     }

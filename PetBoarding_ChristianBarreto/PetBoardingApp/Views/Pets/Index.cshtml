@@ -31,5 +31,12 @@
 
 @using (Html.BeginForm("Delete", "Pets", FormMethod.Post))
 {
-    <button type="submit" class="btn btn-primary">Delete Pet</button>
+    <p>Enter pet name to delete.</p>
+
+    <div class="mb-3">
+        <label class="form-label">Pet Name</label>
+        @Html.TextBox("Name", null, new { @class = "form-control", required = "required" })
+    </div>
+
+    <button type="submit" class="btn btn-danger">Delete Pet</button>
 }

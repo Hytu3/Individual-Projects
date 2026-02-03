@@ -19,12 +19,24 @@
         Your Pet Owner ID: <strong>@User.Identity.GetUserId()</strong>
     </div>
 
-    <br />
+    <br/>
     
-    <li>
+    <div>
+
         @Html.ActionLink("My Profile", "Read", "Account",
+        new { id = User.Identity.GetUserId() },
+        null)
+
+        <br />
+        <br />
+
+
+        @Html.ActionLink("My Pets", "GetPetsByOwner", "PetOwners",
             new { id = User.Identity.GetUserId() },
             null)
-    </li>
+
+
+    </div>
+    
 }
 

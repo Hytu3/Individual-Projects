@@ -297,6 +297,8 @@
     <Content Include="Views\Account\Read.cshtml" />
     <Content Include="Views\Bookings\BookingSuccessful.cshtml" />
     <Content Include="Views\Pets\PetSuccessful.cshtml" />
+    <Content Include="Views\PetOwners\GetPetsByOwner.cshtml" />
+    <Content Include="Views\Pets\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

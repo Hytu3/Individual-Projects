@@ -146,5 +146,25 @@ namespace PetBoardingApp.Controllers
 
             return Content("Delete");
         }
+
+        [HttpGet]
+        public ActionResult GetPetsByOwner(Guid id)
+        {
+            // Connect to database
+            ApplicationDbContext dbContext = new ApplicationDbContext();
+
+            // Query the database
+            PetOwner petOwner = dbContext.PetOwners.FirstOrDefault(x => x.PetOwnerId == id);
+
+            // Validate and return
+            if (petOwner == null)
+            {
+                return Content("No pet owner found with that ID");
+
+            }
+
+            return View(petOwner);
+
+        }
     }
 }
