@@ -61,9 +61,18 @@ public class WaterBodyController
 
   @ResponseBody
   @PostMapping("/addFishToWaterBody")
-  public String addFishToWaterBody(Integer id, Fish fish)
+  public String addFishToWaterBody(Integer waterBodyId, Integer fishId)
   {
-    String message = waterBodyService.addFishToWaterBody(id,fish);
+    String message = waterBodyService.addFishToWaterBody(waterBodyId,fishId);
+    
+    return message;
+  }
+
+  @ResponseBody
+  @GetMapping("/findFishByWaterBody")
+  public String findFishByWaterBody(Integer id)
+  {
+    String message = waterBodyService.findFishByWaterBody(id);
     
     return message;
   }

@@ -50,11 +50,18 @@ public class FindFishAZApplication
             String linkMsg = fishService.create("Largemouth Bass", "Loves shady spots");
             System.out.println("Fish Create: " + linkMsg);
             
-
-            // 5. TEST DELETE
-            String deleteMsg = waterBodyService.delete(2);
-            System.out.println("Delete Result: " + deleteMsg);
             */
+            //5. TEST DELETE
+            String deleteMsg = fishService.delete(2);
+            System.out.println(deleteMsg);
+
+            // 6. TEST ADD FISH TO WATER BODY
+            String addMessage = waterBodyService.addFishToWaterBody(1,1);
+            System.out.println(addMessage);
+
+            // 7. TEST SEARCH FISH BY WATER BODY
+            String searchMessage = waterBodyService.findFishByWaterBody(1);
+            System.out.println(searchMessage);
 
             System.out.println("--- CRUD TEST FINISHED ---");
         };

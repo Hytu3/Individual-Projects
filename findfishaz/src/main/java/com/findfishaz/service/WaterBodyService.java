@@ -9,6 +9,7 @@ import com.findfishaz.model.Fish;
 import com.findfishaz.model.WaterBody;
 import com.findfishaz.repository.FishRepository;
 import com.findfishaz.repository.WaterBodyRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -114,24 +115,26 @@ public class WaterBodyService
 
  }
 
- public String addFishToWaterBody(Integer id, Fish fish)
+ @Transactional
+ public String addFishToWaterBody(Integer waterBodyId, Integer fishId)
  {
    // Find water body to add fish to
-   Optional<WaterBody> waterBodyId = waterBodyRepository.findById(id);
+   Optional<WaterBody> waterBody = waterBodyRepository.findById(waterBodyId);
 
-   if (waterBodyId.isPresent())
+   if (waterBody.isPresent())
    {
-     WaterBody foundWaterBody = waterBodyId.get();
+     WaterBody foundWaterBody = waterBody.get();
      
      List<Fish> list = foundWaterBody.getFishes();
 
      // Find specific fish
-     Optional<Fish> fishId = fishRepository.findById(fish.getId());
+     Optional<Fish> fish = fishRepository.findById(fishId);
 
      
-     if (fishId.isPresent())
+     // If its a valid fish species
+     if (fish.isPresent())
      {
-       Fish foundFish = fishId.get();
+       Fish foundFish = fish.get();
 
        // Adds fish to waterbody
        list.add(foundFish);
@@ -144,7 +147,7 @@ public class WaterBodyService
 
        fishRepository.save(foundFish);
 
-       return "Fish added to water body";
+       return  foundFish.getSpecies() + " added to " + foundWaterBody.getName();
      }
 
 
@@ -152,6 +155,39 @@ public class WaterBodyService
 
    return "Couldn't add fish to water body";
 
+
+ }
+
+ @Transactional
+ public String findFishByWaterBody(Integer id)
+ {
+   // Find Specific Water Body in database
+   Optional<WaterBody> waterBodyId = waterBodyRepository.findById(id);
+
+   if (waterBodyId.isPresent())
+   {
+      // Build a string message of all fish into a waterbody
+      StringBuilder sb = new StringBuilder();
+
+      sb.append("List of fish species for ");
+    
+      WaterBody foundWaterBody = waterBodyId.get();
+
+      String name = foundWaterBody.getName(); 
+      
+      sb.append(name + ": ");
+      
+      List<Fish> list = foundWaterBody.getFishes();
+
+      for (Fish fish : list)
+      {
+        sb.append(fish.getSpecies() + ", ");
+      }
+
+      return sb.toString();
+   }
+
+   return "Couldn't find water body in database";
 
  }
 
