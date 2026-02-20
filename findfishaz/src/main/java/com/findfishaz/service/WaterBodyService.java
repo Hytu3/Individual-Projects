@@ -184,6 +184,9 @@ public class WaterBodyService
         sb.append(fish.getSpecies() + ", ");
       }
 
+      // Delete last comma
+      sb.deleteCharAt(sb.length() - 2);
+
       return sb.toString();
    }
 
@@ -191,6 +194,52 @@ public class WaterBodyService
 
  }
 
+ @Transactional
+ public String findWaterBodiesWithFish (Integer fishId)
+ {
+    // Get a list of all water bodies
+    List<WaterBody> waterBodyList = waterBodyRepository.findAll();
+
+    // Find Specific fish in database
+    Optional<Fish> fish = fishRepository.findById(fishId);
+
+    // If fish exists
+    if (fish.isPresent())
+    {
+        Fish foundFish = fish.get();
+
+        StringBuilder sb = new StringBuilder();
+        
+        // See which waterbodies contain targeted fish and return them
+        for (WaterBody waterBody : waterBodyList)
+        {
+          List<Fish> list = waterBody.getFishes();
+
+          if (list.contains(foundFish))
+          {
+            sb.append(waterBody.getName());
+            sb.append(" ,");
+          }
+        }
+        
+        // If no waterbody contains this fish
+        if (sb.isEmpty())
+        {
+          return "Fish species doesny belong in any lake";
+        }
+
+        // Remove last comma
+        sb.deleteCharAt(sb.length() - 1);
+
+        return foundFish.getSpecies() + " is in these waterbodies: " + sb.toString();
+
+
+    }
+
+    return "Fish doesnt exist in database";
+
+    
+ }
 
 
 
