@@ -2,17 +2,18 @@ package com.findfishaz.controller;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.findfishaz.model.Fish;
 import com.findfishaz.service.WaterBodyService;
 
 @Controller
-@RequestMapping("/waterbody")
+@RequestMapping("/waterBody")
 public class WaterBodyController 
 {
   // Dependency Injection
@@ -23,13 +24,31 @@ public class WaterBodyController
     this.waterBodyService = waterBodyService;
   }
 
-  @ResponseBody
-  @PostMapping("/create")
-  public String Create(String name, String city, String type, Boolean isPrivate)
+  @GetMapping("/allWaterBodies") 
+  public String showWaterBodyPage(Model model)
   {
-    String message = waterBodyService.create(name, city, type, isPrivate);
+      model.addAttribute("waterBodyList", waterBodyService.showWaterBodyPage());
 
-    return message;
+      return "waterBodyPage";
+  }
+  
+  // Leads user to empty form
+  @GetMapping("/addWaterBody")
+  public String addWaterBodyPage()
+  {
+    return "createWaterBody";
+  }
+  
+  @PostMapping("/create")
+  public String Create(Model model, @RequestParam String name, @RequestParam String city, @RequestParam String type, @RequestParam Boolean isPrivate)
+  {
+    model.addAttribute("createMessage", waterBodyService.create(name,city,type,isPrivate));
+    model.addAttribute("waterBodyName", name);
+    model.addAttribute("waterBodyCity", city);
+    model.addAttribute("waterBodyType", type);
+    model.addAttribute("isBodyPrivate", isPrivate);
+
+    return "createdWaterBody";
   }
 
   @ResponseBody

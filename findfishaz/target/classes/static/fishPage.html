@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AZ Fish Species</title>
+</head>
+<body>
+    <h1>All Arizona Fish Species</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Species Name</th>
+                <th>Current Water Body</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="fish : ${fishList}">
+                <td th:text="${fish.species}">Species Name</td>
+                
+                <td th:text="${fish.waterBody != null} ? ${fish.waterBody.name} : 'Unassigned'">Lake</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+</html>

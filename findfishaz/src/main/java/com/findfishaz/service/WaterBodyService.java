@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.findfishaz.model.Fish;
 import com.findfishaz.model.WaterBody;
 import com.findfishaz.repository.FishRepository;
 import com.findfishaz.repository.WaterBodyRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -25,6 +25,11 @@ public class WaterBodyService
    this.fishRepository = fishRepository;
  }
 
+ public List<WaterBody> showWaterBodyPage()
+ {
+   return waterBodyRepository.findAll();
+ }
+ 
  public String create(String name, String city, String type, Boolean isPrivate)
  {
     // Create new waterbody object

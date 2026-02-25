@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Fish</title>
+</head>
+<body>
+    <h1>Register a New Arizona Fish</h1>
+    
+    <form th:action="@{/fish/create}" method="post">
+        <div>
+            <label>Species Name:</label>
+            <input type="text" name="species" required />
+        </div>
+        
+        <div>
+            <label>Species Info:</label>
+            <input type="text" name="info" required />
+        </div>
+
+        <button type="submit" style="margin-top: 20px;">Create Fish</button>
+    </form>
+    
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>

@@ -1,11 +1,12 @@
 package com.findfishaz.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.findfishaz.model.Fish;
-import com.findfishaz.repository.FishRepository; 
+import com.findfishaz.repository.FishRepository;
 
 @Service
 public class FishService 
@@ -20,6 +21,11 @@ public class FishService
      this.fishRepository = fishRepository;
  }
 
+ public List<Fish> showFishPage()
+ {
+   return fishRepository.findAll();
+ }
+ 
  public String create(String species, String info)
  {
     // Create new fish object
@@ -33,7 +39,7 @@ public class FishService
     // Add to database
     fishRepository.save(fish);
 
-    return "Success";
+    return "Fish Created";
  }
 
  public String read(Integer id)

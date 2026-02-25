@@ -2,10 +2,12 @@ package com.findfishaz.controller;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.findfishaz.service.FishService;
@@ -23,13 +25,30 @@ public class FishController
    this.fishService = fishService;
  }
 
- @ResponseBody
- @PostMapping("/create") // URL: localhost:8080/fish/create
- public String Create(String species, String info)
+ @GetMapping("/allFish") // URL: localhost:8080/fish/fishPage
+ public String showFishPage(Model model)
  {
-  String message = fishService.create(species, info);
+    model.addAttribute("fishList", fishService.showFishPage());
 
-  return message;
+    return "fishPage";
+  
+ }
+ 
+ // Leads user to empty form
+ @GetMapping("/addFish") // URL: localhost:8080/fish/addFish
+ public String addFishPage()
+ {
+  return "createFish";
+ }
+ 
+ @PostMapping("/create") // URL: localhost:8080/fish/create
+ public String Create( Model model, @RequestParam String species, @RequestParam String info)
+ {
+  model.addAttribute("createMessage", fishService.create(species, info));
+  model.addAttribute("fishSpecies", species);
+  model.addAttribute("fishInfo", info);
+  
+  return "createdFish";
   
  }
 

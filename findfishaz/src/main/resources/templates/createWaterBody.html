@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Water Body</title>
+</head>
+<body>
+    <h1>Register a New Arizona Water Body</h1>
+    
+    <form th:action="@{/waterBody/create}" method="post">
+        <div>
+            <label>Name:</label>
+            <input type="text" name="name" placeholder="e.g. Canyon Lake" required />
+        </div>
+        
+        <div>
+            <label>City:</label>
+            <input type="text" name="city" placeholder="e.g. Tortilla Flat" required />
+        </div>
+
+        <div>
+            <label>Type:</label>
+            <input type="text" name="type" placeholder="e.g. Reservoir / River" required />
+        </div>
+
+        <div>
+            <label>Is it Private?</label>
+            <select name="isPrivate">
+                <option value="false">Public (State Park/Open)</option>
+                <option value="true">Private (HOA/Residential)</option>
+            </select>
+        </div>
+
+        <button type="submit">Save to Database</button>
+    </form>
+    
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>
