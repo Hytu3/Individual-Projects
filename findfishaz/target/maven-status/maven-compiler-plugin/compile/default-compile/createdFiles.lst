@@ -1,9 +1,9 @@
 com\findfishaz\controller\WaterBodyController.class
-com\findfishaz\model\WaterBody.class
 com\findfishaz\service\WaterBodyService.class
 com\findfishaz\controller\FishController.class
 com\findfishaz\service\FishService.class
+com\findfishaz\FindFishAZApplication.class
+com\findfishaz\model\WaterBody.class
 com\findfishaz\model\Fish.class
 com\findfishaz\repository\FishRepository.class
-com\findfishaz\FindFishAZApplication.class
 com\findfishaz\repository\WaterBodyRepository.class

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.findfishaz.service.FishService;
 import com.findfishaz.service.WaterBodyService;
 
 @Controller
@@ -18,10 +19,12 @@ public class WaterBodyController
 {
   // Dependency Injection
   private final WaterBodyService waterBodyService;
+  private final FishService fishService;
 
-  public WaterBodyController(WaterBodyService waterBodyService)
+  public WaterBodyController(WaterBodyService waterBodyService, FishService fishService)
   {
     this.waterBodyService = waterBodyService;
+    this.fishService = fishService;
   }
 
   @GetMapping("/allWaterBodies") 
@@ -78,25 +81,23 @@ public class WaterBodyController
     return message;
   }
 
-  @ResponseBody
-  @PostMapping("/addFishToWaterBody")
-  public String addFishToWaterBody(Integer waterBodyId, Integer fishId)
+  @GetMapping("/searchWaterBody")
+  public String searchWaterBodies()
   {
-    String message = waterBodyService.addFishToWaterBody(waterBodyId,fishId);
-    
-    return message;
+    return "searchWaterBodiesWithSpecificFish";
   }
-
-  @ResponseBody
-  @GetMapping("/findFishByWaterBody")
-  public String findFishByWaterBody(Integer id)
+  
+  @GetMapping("/findWaterBodiesWithSpecificFish")
+  public String findWaterBodiesWithFish (Model model, @RequestParam String species)
   {
-    String message = waterBodyService.findFishByWaterBody(id);
+    // Get ID to use into parameters
+    Integer fishId = fishService.getFishIdBySpecies(species);
     
-    return message;
+    String waterBodies = waterBodyService.findWaterBodiesWithFish(fishId);
+
+    model.addAttribute("waterBodies_List", waterBodies);
+
+    return "waterBodiesFoundWithSpecificFish";
   }
-
-
-
 
 }

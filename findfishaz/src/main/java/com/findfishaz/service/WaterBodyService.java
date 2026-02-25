@@ -121,85 +121,6 @@ public class WaterBodyService
  }
 
  @Transactional
- public String addFishToWaterBody(Integer waterBodyId, Integer fishId)
- {
-   // Find water body to add fish to
-   Optional<WaterBody> waterBody = waterBodyRepository.findById(waterBodyId);
-
-   if (waterBody.isPresent())
-   {
-     WaterBody foundWaterBody = waterBody.get();
-     
-     List<Fish> list = foundWaterBody.getFishes();
-
-     // Find specific fish
-     Optional<Fish> fish = fishRepository.findById(fishId);
-
-     
-     // If its a valid fish species
-     if (fish.isPresent())
-     {
-       Fish foundFish = fish.get();
-
-       // Adds fish to waterbody
-       list.add(foundFish);
-
-     
-       foundFish.setWaterBody(foundWaterBody);
-
-       // Save changes
-       waterBodyRepository.save(foundWaterBody);
-
-       fishRepository.save(foundFish);
-
-       return  foundFish.getSpecies() + " added to " + foundWaterBody.getName();
-     }
-
-
-   }
-
-   return "Couldn't add fish to water body";
-
-
- }
-
- @Transactional
- public String findFishByWaterBody(Integer id)
- {
-   // Find Specific Water Body in database
-   Optional<WaterBody> waterBodyId = waterBodyRepository.findById(id);
-
-   if (waterBodyId.isPresent())
-   {
-      // Build a string message of all fish into a waterbody
-      StringBuilder sb = new StringBuilder();
-
-      sb.append("List of fish species for ");
-    
-      WaterBody foundWaterBody = waterBodyId.get();
-
-      String name = foundWaterBody.getName(); 
-      
-      sb.append(name + ": ");
-      
-      List<Fish> list = foundWaterBody.getFishes();
-
-      for (Fish fish : list)
-      {
-        sb.append(fish.getSpecies() + ", ");
-      }
-
-      // Delete last comma
-      sb.deleteCharAt(sb.length() - 2);
-
-      return sb.toString();
-   }
-
-   return "Couldn't find water body in database";
-
- }
-
- @Transactional
  public String findWaterBodiesWithFish (Integer fishId)
  {
     // Get a list of all water bodies
@@ -230,20 +151,38 @@ public class WaterBodyService
         // If no waterbody contains this fish
         if (sb.isEmpty())
         {
-          return "Fish species doesny belong in any lake";
+          return "Fish species doesn't belong in any water body";
         }
 
         // Remove last comma
         sb.deleteCharAt(sb.length() - 1);
 
-        return foundFish.getSpecies() + " is in these waterbodies: " + sb.toString();
+        return foundFish.getSpecies() + " is in these water bodies: " + sb.toString();
 
 
     }
 
-    return "Fish doesnt exist in database";
+    return "Fish doesn't exist in database";
 
     
+ }
+
+ @Transactional
+ public Integer getWaterBodyIdByName(String name)
+ {
+    // Search for all water bodies by its name
+    List<WaterBody> waterBodies = waterBodyRepository.findAll();
+
+    for (WaterBody waterBody : waterBodies)
+    {
+      if (waterBody.getName().equals(name))
+      {
+        return waterBody.getId();
+      }
+    }
+
+    // Water body id wasn't found
+    return 0;
  }
 
 

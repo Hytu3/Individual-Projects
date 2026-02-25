@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Find Fish Living In A Certain Water Body</title>
+</head>
+<body>
+    
+    <form th:action="@{/fish/findFishByWaterBody}" method="get">
+        <div>
+            <label>Enter Water Body Name to be searched:</label>
+            <input type="text" name="name" required />
+        </div>
+        
+
+        <button type="submit">Search fish that live in this water body</button>
+    </form>
+    
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>

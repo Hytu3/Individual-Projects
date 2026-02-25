@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.findfishaz.model.Fish;
+import com.findfishaz.model.WaterBody;
 import com.findfishaz.repository.FishRepository;
+import com.findfishaz.repository.WaterBodyRepository;
 
 @Service
 public class FishService 
@@ -15,10 +18,12 @@ public class FishService
  // Inject Repository
 
  private final FishRepository fishRepository;
+ private final WaterBodyRepository waterBodyRepository;
 
- public FishService(FishRepository fishRepository) 
+ public FishService(FishRepository fishRepository, WaterBodyRepository waterBodyRepository) 
  {
      this.fishRepository = fishRepository;
+     this.waterBodyRepository = waterBodyRepository;
  }
 
  public List<Fish> showFishPage()
@@ -97,6 +102,104 @@ public class FishService
 
    return "Fish couldn't be deleted due to it not being in database";
 
+ }
+
+ @Transactional
+ public String addFishToWaterBody(Integer waterBodyId, Integer fishId)
+ {
+   // Find water body to add fish to
+   Optional<WaterBody> waterBody = waterBodyRepository.findById(waterBodyId);
+
+   if (waterBody.isPresent())
+   {
+      WaterBody foundWaterBody = waterBody.get();
+      
+      List<Fish> list = foundWaterBody.getFishes();
+
+      // Find specific fish
+      Optional<Fish> fish = fishRepository.findById(fishId);
+
+      
+      // If its a valid fish species
+      if (fish.isPresent())
+      {
+        Fish foundFish = fish.get();
+
+        // Adds fish to waterbody
+        list.add(foundFish);
+
+      
+        foundFish.setWaterBody(foundWaterBody);
+
+        // Save changes
+        waterBodyRepository.save(foundWaterBody);
+
+        fishRepository.save(foundFish);
+
+        return  foundFish.getSpecies() + " added to " + foundWaterBody.getName();
+      }
+   }
+
+    return "Couldn't add fish to water body";
+ }
+
+ @Transactional
+ public String findAllFishByWaterBody(Integer wbId)
+ {
+   // Find Specific Water Body in database
+   Optional<WaterBody> waterBodyId = waterBodyRepository.findById(wbId);
+
+   if (waterBodyId.isPresent())
+   {
+      // Build a string message of all fish into a waterbody
+      StringBuilder sb = new StringBuilder();
+
+      sb.append("List of fish species for ");
+    
+      WaterBody foundWaterBody = waterBodyId.get();
+
+      String name = foundWaterBody.getName(); 
+      
+      sb.append(name + ": ");
+      
+      List<Fish> list = foundWaterBody.getFishes();
+
+      if (list.isEmpty())
+      {
+        return "Couldn't find any fish in " + foundWaterBody.getName();
+      }
+
+      for (Fish fish : list)
+      {
+        sb.append(fish.getSpecies() + ", ");
+      }
+      
+      // Delete last comma
+      sb.deleteCharAt(sb.length() - 2);
+
+      return sb.toString();
+   }
+
+   return "Couldn't find water body in database";
+
+ }
+
+ @Transactional
+ public Integer getFishIdBySpecies(String species)
+ {
+    // Search for all fishes by its name
+    List<Fish> fishes = fishRepository.findAll();
+
+    for (Fish fish : fishes)
+    {
+      if (fish.getSpecies().equals(species))
+      {
+        return fish.getId();
+      }
+    }
+
+    // Fish id wasn't found
+    return 0;
  }
 
  

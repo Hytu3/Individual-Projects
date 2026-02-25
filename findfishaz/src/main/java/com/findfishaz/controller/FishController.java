@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.findfishaz.service.FishService;
+import com.findfishaz.service.WaterBodyService;
 
 @Controller
 @RequestMapping("/fish")
@@ -19,10 +20,12 @@ public class FishController
  
  // Dependency Injection
  private final FishService fishService;
+ private final WaterBodyService waterBodyService;
 
- public FishController(FishService fishService)
+ public FishController(FishService fishService, WaterBodyService waterBodyService)
  {
    this.fishService = fishService;
+   this.waterBodyService = waterBodyService;
  }
 
  @GetMapping("/allFish") // URL: localhost:8080/fish/fishPage
@@ -79,4 +82,30 @@ public class FishController
 
    return message;
  }
+
+  @PostMapping("/addFishToWaterBody")
+  public String addFishToWaterBody(Integer waterBodyId, Integer fishId)
+  {
+    String message = fishService.addFishToWaterBody(waterBodyId,fishId);
+    
+    return message;
+  }
+
+  
+  @GetMapping("/searchFish")
+  public String searchAllFishFromWaterBody()
+  {
+    return "searchAllFishFromCertainWaterBody";
+  }
+  
+  
+  @GetMapping("/findFishByWaterBody")
+  public String findAllFishByWaterBody(Model model, @RequestParam String name)
+  {
+    Integer waterBodyId = waterBodyService.getWaterBodyIdByName(name);
+    
+    model.addAttribute("fishes", fishService.findAllFishByWaterBody(waterBodyId));
+    
+    return "fishFoundInSpecificWaterBody";
+  }
 }
