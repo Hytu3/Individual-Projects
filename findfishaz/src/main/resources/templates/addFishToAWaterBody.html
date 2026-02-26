@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add New Fish</title>
+    <title>Add New Fish To Water Body</title>
 </head>
 <body>
-    <h1>Register a New Arizona Fish</h1>
+    <h1>Add fish to water body!</h1>
     
-    <form th:action="@{/fish/create}" method="post">
+    <form th:action="@{/fish/addedFishToWaterBody}" method="post">
         <div>
             <label>Species Name:</label>
             <input type="text" name="species" required />
         </div>
         
         <div>
-            <label>Species Info:</label>
-            <input type="text" name="info" required />
+            <label>Water Body Name:</label>
+            <input type="text" name="name" required />
         </div>
 
-        <button type="submit">Create Fish</button>
+        <button type="submit">Add Fish</button>
     </form>
     
     <p><a href="/">Back to Home</a></p>

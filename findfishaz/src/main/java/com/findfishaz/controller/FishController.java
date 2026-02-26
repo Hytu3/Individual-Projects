@@ -83,12 +83,22 @@ public class FishController
    return message;
  }
 
-  @PostMapping("/addFishToWaterBody")
-  public String addFishToWaterBody(Integer waterBodyId, Integer fishId)
+  @GetMapping("/addFishToWaterBody")
+  public String addFishToSpecificWaterBody()
   {
-    String message = fishService.addFishToWaterBody(waterBodyId,fishId);
+    return "addFishToAWaterBody";
+  }
+ 
+  @PostMapping("/addedFishToWaterBody")
+  public String addFishToWaterBody(Model model, @RequestParam String species, @RequestParam String name)
+  {
+    Integer waterBodyId = waterBodyService.getWaterBodyIdByName(name);
+
+    Integer fishId = fishService.getFishIdBySpecies(species);
     
-    return message;
+    model.addAttribute("addMessage", fishService.addFishToWaterBody(waterBodyId, fishId));
+    
+    return "addedFishToAWaterBody";
   }
 
   
