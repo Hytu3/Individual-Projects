@@ -8,7 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 
 
 
@@ -82,21 +82,21 @@ public class WaterBody
     this.isPrivate = isPrivate;
   }
 
-// One to many relationship with fishes
-@OneToMany(mappedBy = "waterBody", cascade = CascadeType.ALL)
-private List<Fish> fishes = new ArrayList<>(); 
+  // One to many relationship with fishes
+  @ManyToMany(mappedBy = "waterBodies")
+  private List<Fish> fishes = new ArrayList<>(); 
 
-// Your Getter
-public List<Fish> getFishes() 
-{
-    return fishes;
-}
+  // Your Getter
+  public List<Fish> getFishes() 
+  {
+      return fishes;
+  }
 
-// Your Setter
-public void setFishes(List<Fish> fishes) 
-{
-    this.fishes = fishes;
-}
+  // Your Setter
+  public void setFishes(List<Fish> fishes) 
+  {
+      this.fishes = fishes;
+  }
 
 
 }

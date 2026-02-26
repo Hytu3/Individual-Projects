@@ -114,7 +114,7 @@ public class FishService
    {
       WaterBody foundWaterBody = waterBody.get();
       
-      List<Fish> list = foundWaterBody.getFishes();
+      List<Fish> fishes = foundWaterBody.getFishes();
 
       // Find specific fish
       Optional<Fish> fish = fishRepository.findById(fishId);
@@ -125,12 +125,14 @@ public class FishService
       {
         Fish foundFish = fish.get();
 
+        List<WaterBody> waterBodies = foundFish.getWaterBodies();
+
         // Adds fish to waterbody
-        list.add(foundFish);
+        fishes.add(foundFish);
 
-      
-        foundFish.setWaterBody(foundWaterBody);
-
+        // Adds water body to fish species
+        waterBodies.add(foundWaterBody);
+        
         // Save changes
         waterBodyRepository.save(foundWaterBody);
 
