@@ -2,27 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>AZ Water Bodies</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     <h1>All Water Bodies</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>City</th>
-                <th>Type</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="waterBody : ${waterBodyList}">
-                <td th:text="${waterBody.name}">Water Body Name</td>
-                <td th:text="${waterBody.city}">Water Body City</td>
-                <td th:text="${waterBody.type}">Water Body Type</td>
-            </tr>
-        </tbody>
-    </table>
-
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="waterBody : ${waterBodyList}">
+                    <td th:text="${waterBody.name}">Water Body Name</td>
+                    <td th:text="${waterBody.city}">Water Body City</td>
+                    <td th:text="${waterBody.type}">Water Body Type</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 </html>

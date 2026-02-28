@@ -2,11 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>AZ Fish Species</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+    
     <h1>All Arizona Fish Species</h1>
 
-    <table>
+    <div class="container">
+     <table>
         <thead>
             <tr>
                 <th>Species Name</th>
@@ -17,7 +20,8 @@
                 <td th:text="${fish.species}">Species Name</td>
             </tr>
         </tbody>
-    </table>
+    </table>   
+    </div>
 
 
 </body>

@@ -2,24 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Add New Fish</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     <h1>Register a New Arizona Fish</h1>
-    
-    <form th:action="@{/fish/create}" method="post">
-        <div>
-            <label>Species Name:</label>
-            <input type="text" name="species" required />
-        </div>
-        
-        <div>
-            <label>Species Info:</label>
-            <input type="text" name="info" required />
-        </div>
+    <div class="container">
+        <form th:action="@{/fish/create}" method="post">
+            <div>
+                <label>Species Name:</label>
+                <input type="text" name="species" required />
+            </div>
+            
+            <div>
+                <label>Species Info:</label>
+                <input type="text" name="info" required />
+            </div>
 
-        <button type="submit">Create Fish</button>
-    </form>
-    
-    <p><a href="/">Back to Home</a></p>
+            <button type="submit">Create Fish</button>
+        </form>
+        
+        <p><a href="/">Back to Home</a></p>
+    </div>
 </body>
 </html>

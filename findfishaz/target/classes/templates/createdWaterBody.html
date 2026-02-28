@@ -2,11 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Success!</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     <h1 th:text="${createMessage}">Status</h1>
 
-    <div>
+    <div class="container">
         <h3>Water Body Registered:</h3>
         <p><strong>Name:</strong> <span th:text="${waterBodyName}"></span></p>
         <p><strong>City:</strong> <span th:text="${waterBodyCity}"></span></p>
@@ -15,8 +16,10 @@
         <p><strong>Private Access:</strong> 
            <span th:text="${isBodyPrivate ? 'Yes' : 'No'}"></span>
         </p>
+
+        <br>
+        <p><a href="/">Back to Home</a></p>
     </div>
 
-    <p><a href="/">Back to Home</a></p>
 </body>
 </html>

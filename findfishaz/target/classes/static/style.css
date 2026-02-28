@@ -1,0 +1,96 @@
+/* Import Wild West & Rugged Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&display=swap');
+
+:root {
+    --copper: #B87333;
+    --dark-copper: #8B4513;
+    --saguaro-green: #2E4D32;
+    --desert-teal: #008080;
+    --sand: #F5F5DC;
+    --dusty-black: #2B2B2B;
+}
+
+body {
+    background-color: var(--sand);
+    background-image: radial-gradient(var(--sand) 90%, #e0e0d0 100%);
+    color: var(--dusty-black);
+    font-family: 'Special Elite', system-ui, serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Headers with the "Jagged" Wild West Font */
+h1, h2, h3 {
+    font-family: 'Rye', cursive;
+    color: var(--dark-copper);
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+    border-bottom: 3px ridge var(--saguaro-green);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* Tables - Rugged Style */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border: 4px solid var(--saguaro-green);
+    box-shadow: 8px 8px 0px var(--desert-teal);
+    margin-top: 20px;
+}
+
+th {
+    background-color: var(--saguaro-green);
+    color: var(--sand);
+    font-family: 'Rye', sans-serif;
+    padding: 15px;
+    text-align: left;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px dashed var(--dark-copper);
+}
+
+tr:hover {
+    background-color: #f0f8f0;
+}
+
+/* Buttons - Copper & Teal */
+button, .btn-link {
+    background-color: var(--copper);
+    color: white;
+    font-family: 'Rye', sans-serif;
+    border: 2px solid var(--dark-copper);
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 3px 3px 0px var(--dusty-black);
+}
+
+button:hover, .btn-link:hover {
+    background-color: var(--desert-teal);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px var(--dusty-black);
+}
+
+/* Forms */
+input[type="text"], select {
+    background: #fff;
+    border: 2px solid var(--saguaro-green);
+    padding: 10px;
+    font-family: 'Special Elite', serif;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 15px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,0.05);
+}

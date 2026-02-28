@@ -2,37 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Add Water Body</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     <h1>Register a New Arizona Water Body</h1>
+    <div class="container">
+        <form th:action="@{/waterBody/create}" method="post">
+            <div>
+                <label>Name:</label>
+                <input type="text" name="name" placeholder="e.g. Canyon Lake" required />
+            </div>
+            
+            <div>
+                <label>City:</label>
+                <input type="text" name="city" placeholder="e.g. Tortilla Flat" required />
+            </div>
+
+            <div>
+                <label>Type:</label>
+                <input type="text" name="type" placeholder="e.g. Reservoir / River" required />
+            </div>
+
+            <div>
+                <label>Is it Private?</label>
+                <select name="isPrivate">
+                    <option value="false">Public (State Park/Open)</option>
+                    <option value="true">Private (HOA/Residential)</option>
+                </select>
+            </div>
+
+            <button type="submit">Save to Database</button>
+        </form>
+        <br>
     
-    <form th:action="@{/waterBody/create}" method="post">
-        <div>
-            <label>Name:</label>
-            <input type="text" name="name" placeholder="e.g. Canyon Lake" required />
-        </div>
-        
-        <div>
-            <label>City:</label>
-            <input type="text" name="city" placeholder="e.g. Tortilla Flat" required />
-        </div>
-
-        <div>
-            <label>Type:</label>
-            <input type="text" name="type" placeholder="e.g. Reservoir / River" required />
-        </div>
-
-        <div>
-            <label>Is it Private?</label>
-            <select name="isPrivate">
-                <option value="false">Public (State Park/Open)</option>
-                <option value="true">Private (HOA/Residential)</option>
-            </select>
-        </div>
-
-        <button type="submit">Save to Database</button>
-    </form>
-    
-    <p><a href="/">Back to Home</a></p>
+        <p><a href="/">Back to Home</a></p>
+    </div>
 </body>
 </html>

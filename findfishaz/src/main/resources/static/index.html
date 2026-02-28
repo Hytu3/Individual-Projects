@@ -1,46 +1,38 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Find Fish AZ</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div>
-        <h1>Find Fish AZ</h1>
-        <h2>Below you can see and search for fish or water bodies within Arizona!</h2>
-    </div>
+    <div class="container">
+        <div class="header-box">
+            <h1>Find Fish AZ</h1>
+            <h2>Explore and Search Arizona's Waters</h2>
+        </div>
 
-    <div>
-        <p>
-            <a href="/fish/allFish">See all fish in Arizona!</a>
-        </p>
+        <hr>
 
-        <p>
-            <a href="/waterBody/allWaterBodies">See all water bodies in Arizona!</a>
-        </p>
-    </div>
+        <div class="dashboard-grid">
+            <section>
+                <h3>View Records</h3>
+                <p><a href="/fish/allFish" class="btn-link">See all fish</a></p>
+                <p><a href="/waterBody/allWaterBodies" class="btn-link">See all water bodies</a></p>
+            </section>
 
-    <div>
-        <p>
-            <a href="/fish/searchFish">Search for all fish from a specific water body in Arizona!</a>
-        </p>
+            <section>
+                <h3>Search the Desert</h3>
+                <p><a href="/fish/searchFish" class="btn-link">Fish by Water Body</a></p>
+                <p><a href="/waterBody/searchWaterBody" class="btn-link">Water Bodies by Fish</a></p>
+            </section>
 
-        <p>
-            <a href="/waterBody/searchWaterBody">Search for all water bodies containing a specific fish in Arizona!</a>
-        </p>
-    </div>
-
-    <div>
-        <p>
-            <a href="/fish/addFish">Add new fish!</a>
-        </p>
-
-        <p>
-            <a href="/waterBody/addWaterBody">Add new water body!</a>
-        </p>
-    </div>
-    <div>
-        <p>
-            <a href="/fish/addFishToWaterBody">Add fish to water body!</a>
-        </p>        
+            <section>
+                <h3>Management</h3>
+                <p><a href="/fish/addFish" class="btn-link">Add new fish</a></p>
+                <p><a href="/waterBody/addWaterBody" class="btn-link">Add new water body</a></p>
+                <p><a href="/fish/addFishToWaterBody" class="btn-link copper-btn">Link Fish to Water Body</a></p>
+            </section>
+        </div>
     </div>
 </body>
 </html>
