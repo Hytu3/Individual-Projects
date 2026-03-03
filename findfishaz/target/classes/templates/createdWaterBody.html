@@ -7,7 +7,7 @@
 <body>
     <h1 th:text="${createMessage}">Status</h1>
 
-    <div class="container">
+    <div class="container" th:if="${createMessage == 'Water Body Created'}">
         <h3>Water Body Registered:</h3>
         <p><strong>Name:</strong> <span th:text="${waterBodyName}"></span></p>
         <p><strong>City:</strong> <span th:text="${waterBodyCity}"></span></p>
@@ -17,9 +17,12 @@
            <span th:text="${isBodyPrivate ? 'Yes' : 'No'}"></span>
         </p>
 
-        <br>
-        <p><a href="/">Back to Home</a></p>
     </div>
+
+    
+    <p><a class="btn-link" href="/">Back to Home</a></p>       
+    
+    
 
 </body>
 </html>

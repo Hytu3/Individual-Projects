@@ -32,6 +32,17 @@ public class WaterBodyService
  
  public String create(String name, String city, String type, Boolean isPrivate)
  {
+    // Prevent duplicate creations
+    // See if water body already exists in the database
+    Integer wbId = getWaterBodyIdByName(name);
+
+    Optional<WaterBody> foundWb = waterBodyRepository.findById(wbId);
+
+    if (foundWb.isPresent())
+    {
+      return "Water body already exists in the database";
+    }
+    
     // Create new waterbody object
     WaterBody waterBody = new WaterBody();
 
@@ -47,7 +58,7 @@ public class WaterBodyService
     // Add to database
     waterBodyRepository.save(waterBody);
 
-    return "Success";
+    return "Water Body Created";
  }
 
  public String read(Integer id)

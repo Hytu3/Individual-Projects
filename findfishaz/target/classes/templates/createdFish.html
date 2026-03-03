@@ -7,12 +7,16 @@
 <body>
     <h1 th:text="${createMessage}">Status</h1>
 
-    <div class="container">
-        <h3>Fish Details:</h3>
-        <p><strong>Species:</strong> <span th:text="${fishSpecies}"></span></p>
-        <p><strong>Info:</strong> <span th:text="${fishInfo}"></span></p>
-    </div>
+        <div class="container" th:if="${createMessage == 'Fish Created'}">
+            <h3>Fish Details:</h3>
+            <p><strong>Species:</strong> <span th:text="${fishSpecies}"></span></p>
+            <p><strong>Info:</strong> <span th:text="${fishInfo}"></span></p>
+        </div>
 
-    <p><a href="/">Back to Home</a></p>
+        
+    
+    <p><a class="btn-link" href="/">Back to Home</a></p>       
+    
+    
 </body>
 </html>

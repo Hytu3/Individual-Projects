@@ -33,6 +33,17 @@ public class FishService
  
  public String create(String species, String info)
  {
+    // Prevent duplicate creations
+    // See if fish already exists in the database
+    Integer fishId = getFishIdBySpecies(species);
+
+    Optional<Fish> foundFish = fishRepository.findById(fishId);
+
+    if (foundFish.isPresent())
+    {
+        return "Fish already exists in the database";     
+    }
+      
     // Create new fish object
     Fish fish = new Fish();
 
