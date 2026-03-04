@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add New Fish To Water Body</title>
+    <title>Add New Catch - Frontier Registry</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>Add fish to water body!</h1>
     
-    <div class = "container">
-        <form th:action="@{/fish/addedFishToWaterBody}" method="post">
-            <div>
-                <label>Species Name:</label>
-                <input type="text" name="species" required />
+    <h1>Register fish to water body</h1>
+    
+    <div class="container">
+        <h2>Official Fish Registry</h2>
+
+        <form th:action="@{/fish/addedFishToWaterBody}" method="post" style="text-align: center;">
+            
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px;">Species Name:</label>
+                <input type="text" name="species" class="desert-dropdown" 
+                       placeholder="e.g. Smallmouth Bass" required 
+                       style="text-align: center; max-width: 350px;" />
             </div>
             
-            <div>
-                <label>Water Body Name:</label>
-                <input type="text" name="name" required />
+            <div style="margin-bottom: 35px;">
+                <label style="display: block; margin-bottom: 8px;">Water Body Name:</label>
+                <input type="text" name="name" class="desert-dropdown" 
+                       placeholder="e.g. Apache Lake" required 
+                       style="text-align: center; max-width: 350px;" />
             </div>
 
-            <button type="submit">Add Fish</button>
+            <button type="submit" class="btn-link" style="cursor: pointer; width: 100%; max-width: 300px;">
+                Register fish to water body
+            </button>
             
         </form> 
     
-        <br>
-        <p><a href="/">Back to Home</a></p>
+        <hr style="border: 0; border-top: 1px dashed var(--ink-black); margin: 40px 0; opacity: 0.2;">
+
+        <p style="text-align: center;">
+            <a href="/" class="btn-link" style="font-size: 1rem; padding: 10px 20px;">« Back to Home</a>
+        </p>
     </div>
     
 </body>

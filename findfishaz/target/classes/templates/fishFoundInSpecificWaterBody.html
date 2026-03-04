@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Success!</title>
+    <title>Success - Frontier Registry</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <div class="container">
-        <h1 th:text="${fishes}">Fish living in this water body</h1>
+    
+    <h1>Results</h1>
 
-        <p><a href="/">Back to Home</a></p>
+    <div class="container">
+        <h2 th:text="${fishes}" style="font-size: 2.5rem; border: none;">Fish living in this water body</h2>
+
+        <div style="text-align: center; margin-top: 50px;">
+            
+            <a href="/" class="btn-link">« Back to Home</a>
+        </div>
     </div>
+
 </body>
 </html>

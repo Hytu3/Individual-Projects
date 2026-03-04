@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Find Fish Living In A Certain Water Body</title>
+    <title>Find Fish - Frontier Registry</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
     
-    <div class = "container">
-        <form th:action="@{/fish/findFishByWaterBody}" method="get">
-            <div>
-                <label>Enter Water Body Name to be searched:</label>
-                <input type="text" name="name" required />
-            </div>
-            
+    <h1>Search the Waters</h1>
 
-            <button type="submit">Search fish that live in this water body</button>
+    <div class="container">
+        <h2>Enter Water Body Name</h2>
+
+        <form th:action="@{/fish/findFishByWaterBody}" method="get" style="text-align: center;">
+            <div style="margin-bottom: 30px;">
+                <label style="display: block; margin-bottom: 15px;">Water Body Name:</label>
+                <input type="text" name="name" class="desert-dropdown" placeholder="e.g. Salt River" required 
+                       style="text-align: center; max-width: 300px;"/>
+            </div>
+
+            <button type="submit" class="btn-link" style="border: 3px solid var(--ink-black); cursor: pointer;">
+                Search Local Waters
+            </button>
         </form>
     
-    <p><a href="/">Back to Home</a></p>
+        <p style="text-align: center; margin-top: 40px;">
+            <a href="/" class="btn-link" style="font-size: 1rem; padding: 10px 20px;">« Back to Home</a>
+        </p>
 
     </div>
 </body>

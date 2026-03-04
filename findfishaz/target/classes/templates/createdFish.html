@@ -5,7 +5,7 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1 th:text="${createMessage}">Status</h1>
+    <h1 class="btn-fit" th:text="${createMessage}">Status</h1>
 
         <div class="container" th:if="${createMessage == 'Fish Created'}">
             <h3>Fish Details:</h3>
@@ -15,8 +15,9 @@
 
         
     
-    <p><a class="btn-link" href="/">Back to Home</a></p>       
-    
+    <p style="text-align: center;">
+        <a href="/" class="btn-link" style="font-size: 1rem; padding: 10px 20px;">« Back to Home</a>
+    </p>
     
 </body>
 </html>

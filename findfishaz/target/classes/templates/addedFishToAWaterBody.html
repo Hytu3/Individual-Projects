@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Success!</title>
+    <title>Status Update</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <div class = "container">
-        <h1 th:text="${addMessage}">Status</h1>
+    
+    <h1>Registration Success</h1>
 
-    <p><a href="/">Back to Home</a></p>
+    <div class="container">
+        <h2 th:text="${addMessage}" style="font-size: 2.5rem; border: none; margin-bottom: 20px;">
+            Status Update
+        </h2>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="/" class="btn-link">« Back to Home</a>
+        </div>
     </div>
 </body>
 </html>

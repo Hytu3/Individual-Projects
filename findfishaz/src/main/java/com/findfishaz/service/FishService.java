@@ -138,18 +138,23 @@ public class FishService
 
         List<WaterBody> waterBodies = foundFish.getWaterBodies();
 
-        // Adds fish to waterbody
-        fishes.add(foundFish);
+        // Prevent adding same species to water body
+        if (!fishes.contains(foundFish) && !waterBodies.contains(foundWaterBody))
+        {
+          // Adds fish to waterbody
+          fishes.add(foundFish);
 
-        // Adds water body to fish species
-        waterBodies.add(foundWaterBody);
+          // Adds water body to fish species
+          waterBodies.add(foundWaterBody);
+          
+          // Save changes
+          waterBodyRepository.save(foundWaterBody);
+
+          fishRepository.save(foundFish);
+
+          return  foundFish.getSpecies() + " added to " + foundWaterBody.getName();
+        }
         
-        // Save changes
-        waterBodyRepository.save(foundWaterBody);
-
-        fishRepository.save(foundFish);
-
-        return  foundFish.getSpecies() + " added to " + foundWaterBody.getName();
       }
    }
 

@@ -1,14 +1,13 @@
 /* 1. IMPORT WESTERN FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Rye&family=Special+Elite&display=swap');
 
-/* 2. COLOR VARIABLES */
+/* 2. WILD WEST COLOR PALETTE */
 :root {
-    --sand-base: #F4E4BC;
-    --sand-light: #FDF9E7;
-    --copper-plate: #B87333;
-    --copper-dark: #8B4513;
-    --copper-bright: #D9A066;
-    --bright-teal: #004d4d; 
+    --dusty-road: #D2B48C;      /* Tan sand */
+    --weathered-paper: #E8D3B9;   /* Yellowed parchment */
+    --ink-black: #1A1A1A;       /* Charcoal ink */
+    --burnt-sienna: #8B4513;    /* Dark wood/leather */
+    --gold-spur: #C5A059;       /* Dull brass/gold */
     --saguaro-green: #2E4D32;
 }
 
@@ -18,117 +17,167 @@ body {
     padding: 0;
     font-family: 'Special Elite', system-ui, serif;
     min-height: 100vh;
-    background-color: var(--sand-base);
-    background-image: linear-gradient(135deg, var(--sand-light) 0%, var(--sand-base) 100%);
+    background-color: var(--dusty-road);
+    background-image: url("https://www.transparenttextures.com/patterns/dust.png");
     background-attachment: fixed;
     overflow-x: hidden; 
 }
 
-/* THE SPREAD-OUT CACTI (4 on Left, 4 on Right) */
+/* THE FIXED CACTI & RODS (Black Silhouettes) */
 body::before, body::after {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 75px; /* Bigger cacti */
+    font-size: 70px;
     white-space: pre;
-    
-    /* SPREAD ADJUSTMENT: Increase this number to push them further apart vertically */
-    line-height: 2.8; 
-    
+    line-height: 2.5; 
     z-index: 1;
     pointer-events: none;
-    text-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+    filter: brightness(0) contrast(1); 
+    opacity: 0.7;
 }
 
-/* Left Side Column - Spaced Out */
-body::before {
-    content: "🌵\A 🌵\A 🌵\A 🌵";
-    left: 3%;
-}
+body::before { content: "🌵\A 🎣\A 🌵\A 🎣"; left: 3%; }
+body::after { content: "🌵\A 🎣\A 🌵\A 🎣"; right: 3%; }
 
-/* Right Side Column - Spaced Out */
-body::after {
-    content: "🌵\A 🌵\A 🌵\A 🌵";
-    right: 3%;
-}
-
-/* 4. THE COPPER PLATE CONTAINER */
+/* 4. THE WANTED POSTER CONTAINER */
 .container {
     position: relative;
-    max-width: 900px;
+    max-width: 850px;
     margin: 60px auto;
     padding: 60px;
-    background: linear-gradient(145deg, var(--copper-plate), var(--copper-dark));
-    border: 4px solid var(--copper-bright);
-    box-shadow: 20px 20px 40px rgba(0,0,0,0.4), inset 0 0 60px rgba(0,0,0,0.2);
-    border-radius: 4px;
+    background-color: var(--weathered-paper);
+    background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+    
+    /* Double Border - Main Frame */
+    border: 8px double var(--burnt-sienna);
+    
+    /* Removed the 'outline' and 'outline-offset' that created the inner black line */
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
     z-index: 10;
 }
 
-/* 5. TITLE: THE SIGNATURE "ETCHED" LOOK */
+/* 5. TITLES: BOLD INK BLACK */
 h1 {
     font-family: 'Rye', cursive;
-    color: var(--bright-teal);
-    font-size: 4.2rem;
+    color: var(--ink-black);
+    font-size: 4.5rem;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 12px;
-    margin-bottom: 15px;
-    text-shadow: 
-        -1.5px -1.5px 0 var(--sand-light),  
-         1.5px -1.5px 0 var(--sand-light),
-        -1.5px  1.5px 0 var(--sand-light),
-         1.5px  1.5px 0 var(--sand-light);
+    letter-spacing: 5px;
+    margin-bottom: 0;
 }
 
-/* 6. TEXT STYLES (Teal on Copper) */
-h2, h3, p, a, label, li, td {
-    color: var(--bright-teal) !important;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-shadow: 0.5px 0.5px 0px rgba(255,255,255,0.2);
-}
-
+/* 6. SUBTITLE & GLOBAL TEXT CLEANUP */
 h2 {
     font-family: 'Rye', cursive;
-    font-size: 1.1rem;
+    color: var(--burnt-sienna);
+    font-size: 1.2rem;
     text-align: center;
-    letter-spacing: 8px;
-    word-spacing: 12px;
-    line-height: 2.5;
-    border-top: 2px solid var(--copper-bright);
-    border-bottom: 2px solid var(--copper-bright);
-    padding: 25px 0;
-    margin: 40px 0 60px 0;
+    letter-spacing: 6px;
+    word-spacing: 10px;
+    line-height: 2.0;
+    /* Removed border-bottom and padding-bottom here */
+    margin: 20px 0 50px 0;
+}
+
+/* This section kills the BLUE line and enforces the black ink look */
+h3, p, label, li, td, a {
+    color: var(--ink-black) !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-decoration: none !important; /* Removes the blue underline */
+}
+
+/* Removes the blue/black box that appears when you click a link */
+a:focus, button:focus {
+    outline: none !important;
 }
 
 h3 {
-    font-family: 'Rye', cursive;
     font-size: 1.8rem;
-    letter-spacing: 4px;
-    margin-top: 50px;
+    border-left: 10px solid var(--burnt-sienna);
+    padding-left: 15px;
+    margin-top: 40px;
 }
 
-/* 7. BUTTONS */
+/* 7. THE "SALOON DOOR" BUTTONS */
 .btn-link {
-    display: block;
-    background-color: var(--sand-base);
-    color: var(--bright-teal) !important;
-    font-family: 'Special Elite', serif;
-    font-size: 1.25rem;
-    letter-spacing: 1.8px;
-    line-height: 2.2;
-    text-decoration: none;
+    display: inline-block;
+    background-color: var(--burnt-sienna);
+    color: var(--weathered-paper) !important;
+    font-family: 'Rye', cursive;
+    font-size: 1.3rem;
+    text-decoration: none !important; /* Extra insurance against blue lines */
     text-align: center;
-    padding: 18px;
-    margin: 25px 0;
-    border: 2px solid var(--copper-dark);
-    box-shadow: 5px 5px 0px rgba(0,0,0,0.3);
-    transition: all 0.2s ease;
+    padding: 15px 30px;
+    margin: 15px 5px;
+    border: 3px solid var(--ink-black);
+    box-shadow: 5px 5px 0px var(--ink-black);
+    transition: all 0.1s ease;
 }
 
 .btn-link:hover {
-    background-color: var(--sand-light);
-    transform: scale(1.02);
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.4);
+    background-color: var(--ink-black);
+    color: var(--gold-spur) !important;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--ink-black);
+}
+
+/* 8. DROPDOWNS (Inked Wood Style) */
+.desert-dropdown {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px;
+    font-family: 'Special Elite', serif;
+    background-color: rgba(0,0,0,0.05);
+    color: var(--ink-black);
+    border: 2px solid var(--ink-black);
+    border-radius: 0;
+    cursor: pointer;
+}
+
+/* Helper class to center the table */
+table {
+    margin: 30px auto;
+    border-collapse: collapse;
+}
+
+/* 9. LEDGER TABLE (Species List) */
+table {
+    margin: 40px auto;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 700px; /* Gives the species names room to breathe */
+    z-index: 11;
+}
+
+/* Enlarge the 'Species Name' Header */
+th {
+    font-family: 'Rye', cursive;
+    font-size: 2.2rem; /* Larger than before */
+    color: var(--burnt-sienna);
+    padding-bottom: 15px;
+    border-bottom: 4px double var(--ink-black);
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+/* Enlarge the Individual Fish Names */
+td {
+    font-family: 'Special Elite', serif;
+    font-size: 2rem; /* Nice and big for the 'Wanted' look */
+    color: var(--ink-black);
+    padding: 20px 10px;
+    text-align: center;
+    border-bottom: 1px dashed rgba(26, 26, 26, 0.3); /* Subtle paper-tear line */
+    transition: all 0.2s ease;
+}
+
+/* Row Hover Effect: Highlight the catch */
+tr:hover td {
+    color: var(--burnt-sienna) !important;
+    background-color: rgba(139, 69, 19, 0.05); /* Very light wood-stain tint */
+    cursor: default;
 }

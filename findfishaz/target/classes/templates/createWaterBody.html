@@ -1,44 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Water Body</title>
+    <title>Add Water Body - Frontier Registry</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>Register a New Arizona Water Body</h1>
+    
+    <h1>Register a New Water Body</h1>
+    
     <div class="container">
-        <form th:action="@{/waterBody/create}" method="post">
-            <div>
-                <label>Name:</label>
-                <input type="text" name="name" placeholder="e.g. Canyon Lake" required />
+        <h2>Territory Map Records</h2>
+
+        <form th:action="@{/waterBody/create}" method="post" style="text-align: center;">
+            
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px;">Water Body Name:</label>
+                <input type="text" name="name" class="desert-dropdown" 
+                       placeholder="e.g. Canyon Lake" required 
+                       style="text-align: center; max-width: 350px;" />
             </div>
             
-            <div>
-                <label>City:</label>
-                <input type="text" name="city" placeholder="e.g. Tortilla Flat" required />
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px;">City / Nearest Settlement:</label>
+                <input type="text" name="city" class="desert-dropdown" 
+                       placeholder="e.g. Tortilla Flat" required 
+                       style="text-align: center; max-width: 350px;" />
             </div>
 
-            <div>
-                <label>Type:</label>
-                <input type="text" name="type" placeholder="e.g. Reservoir / River" required />
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px;">Type of Water:</label>
+                <input type="text" name="type" class="desert-dropdown" 
+                       placeholder="e.g. Reservoir / River" required 
+                       style="text-align: center; max-width: 350px;" />
             </div>
 
-            <div>
-                <label>Is it Private?</label>
-                <select name="isPrivate">
+            <div style="margin-bottom: 35px;">
+                <label style="display: block; margin-bottom: 8px;">Access Rights:</label>
+                <select name="isPrivate" class="desert-dropdown" style="max-width: 350px; text-align-last: center;">
                     <option value="false">Public (State Park/Open)</option>
                     <option value="true">Private (HOA/Residential)</option>
                 </select>
             </div>
 
-            
-            <button class="btn-link" type="submit">Save to Database</button>
-            
+            <button type="submit" class="btn-link" style="cursor: pointer; width: 100%; max-width: 300px;">
+                Save to Database
+            </button>
             
         </form>
-        <br>
-    
-        <p><a href="/">Back to Home</a></p>
+        
+        <hr style="border: 0; border-top: 1px dashed var(--ink-black); margin: 40px 0; opacity: 0.2;">
+
+        <p style="text-align: center;">
+            <a href="/" class="btn-link" style="font-size: 1rem; padding: 10px 20px;">« Back to Home</a>
+        </p>
     </div>
 </body>
 </html>

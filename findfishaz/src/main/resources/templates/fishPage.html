@@ -9,18 +9,25 @@
     <h1>All Arizona Fish Species</h1>
 
     <div class="container">
-     <table>
-        <thead>
-            <tr>
-                <th>Species Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="fish : ${fishList}">
-                <td th:text="${fish.species}">Species Name</td>
-            </tr>
-        </tbody>
-    </table>   
+        <div style="display: flex; justify-content: center;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Species Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="fish : ${fishList}">
+                        <td th:text="${fish.species}">Species Name</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="/" class="btn-link">« Back to Home</a>
+        </div>
+        
     </div>
 
 
