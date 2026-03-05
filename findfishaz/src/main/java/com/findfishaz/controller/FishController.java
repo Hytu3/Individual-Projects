@@ -65,22 +65,43 @@ public class FishController
   
  }
 
- @ResponseBody
- @PostMapping("/update") // URL: localhost:8080/fish/update
- public String Update(Integer id, String species, String info)
+ 
+ @GetMapping("/update") // URL: localhost:8080/fish/update
+ public String Update()
  {
-   String message = fishService.update(id, species, info);
+   return "updateFish";
+ }
+ 
+ 
+ @PostMapping("/updated") // URL: localhost:8080/fish/updated
+ public String Update(Model model, @RequestParam String species, @RequestParam String info)
+ {
+  Integer id = fishService.getFishIdBySpecies(species);
+  
+  String update_message = fishService.update(id, species, info);
 
-   return message;
+  model.addAttribute("updateMessage", update_message);
+
+  return "updatedFish";
  }
 
- @ResponseBody
- @DeleteMapping("/delete") // URL: localhost:8080/fish/delete
- public String Delete(Integer id)
+ @GetMapping("/delete") // URL: localhost:8080/fish/delete
+ public String Delete()
  {
-   String message = fishService.delete(id);
+   return "deleteFish";
+ }
+ 
+ 
+ @PostMapping("/deleted") // URL: localhost:8080/fish/deleted
+ public String Delete(Model model, @RequestParam String species)
+ {
+   Integer id = fishService.getFishIdBySpecies(species);
 
-   return message;
+   String delete_message = fishService.delete(id);
+
+   model.addAttribute("deleteMessage", delete_message);
+
+   return "deletedFish";
  }
 
   @GetMapping("/addFishToWaterBody")
@@ -99,6 +120,24 @@ public class FishController
     model.addAttribute("addMessage", fishService.addFishToWaterBody(waterBodyId, fishId));
     
     return "addedFishToAWaterBody";
+  }
+
+  @GetMapping("/deleteFishFromWaterBody")
+  public String deleteFishFromSpecificWaterBody()
+  {
+    return "deleteFishFromAWaterBody";
+  }
+ 
+  @PostMapping("/deletedFishFromWaterBody")
+  public String deletedFishFromWaterBody(Model model, @RequestParam String species, @RequestParam String name)
+  {
+    Integer waterBodyId = waterBodyService.getWaterBodyIdByName(name);
+
+    Integer fishId = fishService.getFishIdBySpecies(species);
+    
+    model.addAttribute("deleteMessage", fishService.deleteFishFromWaterBody(waterBodyId, fishId));
+    
+    return "deletedFishFromAWaterBody";
   }
 
   

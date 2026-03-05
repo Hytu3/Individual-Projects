@@ -82,15 +82,13 @@ public class FishService
    {
 
      Fish foundFish = fishId.get();
-     
-     // Change fields
-     foundFish.setSpecies(species);
-
+    
+     // Update info
      foundFish.setInfo(info);
 
      fishRepository.save(foundFish);
 
-     return "Update successfully";
+     return "Updated info successfully";
 
    }
 
@@ -159,6 +157,52 @@ public class FishService
    }
 
     return "Couldn't add fish to water body";
+ }
+
+ @Transactional
+ public String deleteFishFromWaterBody(Integer waterBodyId, Integer fishId)
+ {
+   // Find water body to delete fish from
+   Optional<WaterBody> waterBody = waterBodyRepository.findById(waterBodyId);
+
+   if (waterBody.isPresent())
+   {
+      WaterBody foundWaterBody = waterBody.get();
+      
+      List<Fish> fishes = foundWaterBody.getFishes();
+
+      // Find specific fish
+      Optional<Fish> fish = fishRepository.findById(fishId);
+
+      
+      // If its a valid fish species
+      if (fish.isPresent())
+      {
+        Fish foundFish = fish.get();
+
+        List<WaterBody> waterBodies = foundFish.getWaterBodies();
+
+        // Prevent deleting a wrong fish
+        if (fishes.contains(foundFish) && waterBodies.contains(foundWaterBody))
+        {
+          // Deletes fish from waterbody
+          fishes.remove(foundFish);
+
+          // Deletes water body from fish
+          waterBodies.remove(foundWaterBody);
+          
+          // Save changes
+          waterBodyRepository.save(foundWaterBody);
+
+          fishRepository.save(foundFish);
+
+          return  foundFish.getSpecies() + " removed from " + foundWaterBody.getName();
+        }
+        
+      }
+   }
+
+    return "Couldn't remove fish from water body";
  }
 
  @Transactional

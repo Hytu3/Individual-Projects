@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Remove Association - Frontier Registry</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    
+
+    <div class="container">
+        <h2 style="color: #a02020;">Remove Fish from Location</h2>
+
+        <div style="text-align: center; margin-bottom: 30px; padding: 15px; border: 2px dashed #a02020; background: rgba(160, 32, 32, 0.05);">
+            <p style="color: #a02020; font-weight: bold; margin: 0;">
+                Notice: This will remove the record of this species from the specific water body. 
+                The species will remain in the database.
+            </p>
+        </div>
+
+        <form th:action="@{/fish/deletedFishFromWaterBody}" method="post" style="text-align: center;">
+            
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px;">Species Name:</label>
+                <input type="text" name="species" class="desert-dropdown" 
+                       placeholder="e.g. Smallmouth Bass" required 
+                       style="text-align: center; max-width: 350px;" />
+            </div>
+
+            <div style="margin-bottom: 35px;">
+                <label style="display: block; margin-bottom: 8px;">Water Body Name:</label>
+                <input type="text" name="name" class="desert-dropdown" 
+                       placeholder="e.g. Canyon Lake" required 
+                       style="text-align: center; max-width: 350px;" />
+            </div>
+
+            <button type="submit" class="btn-link" 
+                    style="cursor: pointer; width: 100%; max-width: 300px; background-color: #a02020;">
+                Remove from Location
+            </button>
+            
+        </form>
+        
+        <hr style="border: 0; border-top: 1px dashed var(--ink-black); margin: 40px 0; opacity: 0.2;">
+
+        <p style="text-align: center;">
+            <a href="/" class="btn-link" style="font-size: 1rem; padding: 10px 20px;">« Back to Home</a>
+        </p>
+    </div>
+</body>
+</html>
