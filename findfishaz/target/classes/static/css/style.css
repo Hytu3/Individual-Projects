@@ -181,3 +181,85 @@ tr:hover td {
     background-color: rgba(139, 69, 19, 0.05); /* Very light wood-stain tint */
     cursor: default;
 }
+
+/* 10 Wanted Poster */
+.wanted-poster {
+    background-color: #f4e4bc;
+    background-image: radial-gradient(#ead8a8 10%, transparent 11%); /* Subtle aged paper spots */
+    background-size: 10px 10px;
+    border: 15px solid #3e2723; /* Darker 'Wood' border */
+    padding: 40px;
+    max-width: 500px;
+    margin: 50px auto; /* Centers it on the page */
+    box-shadow: 20px 20px 0px rgba(0,0,0,0.5); /* Heavy shadow for depth */
+    text-align: center;
+    color: #2e1a14;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.wanted-header { 
+    font-size: 3.5rem; 
+    margin: 0; 
+    font-weight: 900;
+    border-bottom: 5px double #2e1a14; 
+}
+
+.wanted-header2 { 
+    font-size: 3.5rem; 
+    margin: 0; 
+    font-weight: 900;
+}
+
+/* The 'Sketch' area - replaces the clunky container */
+.fish-sketch {
+    width: 95%;      /* Take up most of the poster width */
+    height: auto;    /* Let the image dictate the height */
+    margin: 10px auto; 
+    border: 3px double #2e1a14;
+    background: rgba(0,0,0,0.05);
+    display: flex;   /* Centers the image if it's smaller than the box */
+    justify-content: center;
+    overflow: hidden;
+}
+
+.fish-sketch img {
+    display: block;  /* Kills the 'inline' gap at the bottom */
+    width: 100%;     /* Forces image to fill the width */
+    height: auto;    /* Maintains the original aspect ratio */
+    filter: grayscale(1) sepia(0.4) contrast(1.1);
+    mix-blend-mode: multiply; /* Blends the white parts of the photo into the paper */
+}
+
+/* Tighten up the text so it 'hugs' the image */
+.species-title { 
+    margin: 5px 0 0 0; /* No bottom margin, only top */
+    line-height: 1;    /* Reduces the vertical footprint */
+}
+
+.description { 
+    margin-top: 5px;   /* Brings the info text closer to the species name */
+    padding: 10px;
+    font-size: 1.1rem;
+}
+
+.reward { 
+    font-size: 2rem; 
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+/* Overriding the global button style slightly to match the poster */
+.poster-link {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 20px;
+    background: #2e1a14;
+    color: #f4e4bc;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #2e1a14;
+}
+.poster-link:hover {
+    background: #f4e4bc;
+    color: #2e1a14;
+}

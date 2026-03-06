@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Wanted: [[${species}]]</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body style="background-color: #1a0f0c;"> 
+
+    <div class="wanted-poster">
+        <h1 class="wanted-header">WANTED</h1>
+        <p style="margin-top: 5px; font-weight: bold;">FOR ELUDING THE HOOK IN ARIZONA WATERS</p>
+        
+        <div class="fish-sketch">
+            <img th:src="@{/images/{name}.jpg(name=${species})}" 
+                th:alt="'Sketch of ' + ${species}" 
+                style="max-width: 100%; max-height: 100%; object-fit: contain; filter: sepia(0.5) contrast(1.2);">
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+
+        <h1 class="wanted-header2">REWARD:</h1>
+        <h1 class="wanted-header">A GREAT TALE</h1>
+        
+    </div>
+
+
+    <div class="wanted-poster">
+
+            <h1 class="wanted-header">INFO</h1>
+            <p th:text="${info}">Distinguishing marks: Known to frequent the deep shadows.</p>
+    </div>
+
+    <div style="margin-top: 40px; display: flex; justify-content: center; width: 100%;">
+        <a th:href="@{/fish/allFish}" 
+        class="btn-link" 
+        style="background: #2e1a14; color: #f4e4bc; text-decoration: none; padding: 12px 24px;">
+        « Back to Fish Bounty List
+        </a>
+    </div>
+
+</body>
+</html>

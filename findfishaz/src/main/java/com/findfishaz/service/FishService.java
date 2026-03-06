@@ -264,6 +264,38 @@ public class FishService
     return 0;
  }
 
+ @Transactional
+ public String getFishInfo(Integer id)
+ {
+   // Find fish to make sure it exists
+   Optional<Fish> fishId = fishRepository.findById(id);
+
+   if (fishId.isPresent())
+   {
+      Fish foundFish = fishId.get();
+    
+      return foundFish.getInfo();
+   }
+
+   return "Failure due to fish not being in database";
+ }
+
+ @Transactional
+ public String getFishSpecies(Integer id)
+ {
+   // Find fish to make sure it exists
+   Optional<Fish> fishId = fishRepository.findById(id);
+
+   if (fishId.isPresent())
+   {
+      Fish foundFish = fishId.get();
+    
+      return foundFish.getSpecies();
+   }
+
+   return "Failure due to fish not being in database";
+ }
+
  
 
 }

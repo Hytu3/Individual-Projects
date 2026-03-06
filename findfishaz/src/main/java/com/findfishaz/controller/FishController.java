@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -156,5 +157,20 @@ public class FishController
     model.addAttribute("fishes", fishService.findAllFishByWaterBody(waterBodyId));
     
     return "fishFoundInSpecificWaterBody";
+  }
+
+  @GetMapping("/info/{name}")
+  public String showFishInfo(Model model, @PathVariable("name") String name)
+  {
+    Integer id = fishService.getFishIdBySpecies(name);
+
+    String fishInformation = fishService.getFishInfo(id);
+
+    String fishSpecies = fishService.getFishSpecies(id);
+
+    model.addAttribute("species", fishSpecies);
+    model.addAttribute("info", fishInformation);
+    
+    return "fishInfo";
   }
 }

@@ -18,7 +18,13 @@
                 </thead>
                 <tbody>
                     <tr th:each="fish : ${fishList}">
-                        <td th:text="${fish.species}">Species Name</td>
+                        <td>
+                            <a th:href="@{/fish/info/{name}(name=${fish.species})}" 
+                            th:text="${fish.species}" 
+                            style="color: var(--ink-black); text-decoration: underline;">
+                            Species Name
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
