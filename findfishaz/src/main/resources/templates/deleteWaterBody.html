@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Delete Water Body</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    
+    
+
+    <div class="container">
+        <h2 style="color: #a02020;">Caution: Permanent Action</h2>
+
+        <div style="text-align: center; margin-bottom: 30px; padding: 15px; border: 2px dashed #a02020; background: rgba(160, 32, 32, 0.05);">
+            <p style="color: #a02020; font-weight: bold; margin: 0;">
+                WARNING: You are about to remove a water body from the database. 
+                This action cannot be undone.
+            </p>
+        </div>
+
+        <form th:action="@{/waterBody/deleted}" method="post" style="text-align: center;">
+            <div style="margin-bottom: 30px;">
+                <label style="display: block; margin-bottom: 8px;">Water Body Name to Remove:</label>
+                <input type="text" name="name" class="desert-dropdown" 
+                       placeholder="Enter water body name to be deleted" required 
+                       style="text-align: center; max-width: 350px; border-color: #a02020;" />
+            </div>
+
+            <button type="submit" class="btn-link" 
+                    style="cursor: pointer; width: 100%; max-width: 300px; background-color: #a02020;">
+                Confirm Deletion
+            </button>
+            
+        </form>
+        
+        <hr style="border: 0; border-top: 1px dashed var(--ink-black); margin: 40px 0; opacity: 0.2;">
+
+        <p style="text-align: center;">
+            <a href="/" class="btn-link" style="font-size: 1rem; padding: 10px 20px;">« Back to Home</a>
+        </p>
+    </div>
+</body>
+</html>

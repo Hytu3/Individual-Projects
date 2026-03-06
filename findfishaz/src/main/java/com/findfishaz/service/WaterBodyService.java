@@ -93,20 +93,28 @@ public class WaterBodyService
    if (waterBodyId.isPresent())
    {
 
-     WaterBody foundWaterBody = waterBodyId.get();
+      WaterBody foundWaterBody = waterBodyId.get();
      
-     // Change fields
-     foundWaterBody.setName(name);
+      // Change fields
+      // If fields are not empty and different from original then change them
+      if (city != null && !city.isEmpty() && !foundWaterBody.getCity().equals(city))
+      {
+        foundWaterBody.setCity(city);
+      }
+     
+      if (type != null && !type.isEmpty() && !foundWaterBody.getType().equals(type))
+      {
+        foundWaterBody.setType(type);
+      }
+     
+      if (isPrivate != null && isPrivate != foundWaterBody.getIsPrivate())
+      {
+        foundWaterBody.setIsPrivate(isPrivate);
+      }
 
-     foundWaterBody.setCity(city);
+      waterBodyRepository.save(foundWaterBody);
 
-     foundWaterBody.setType(type);
-
-     foundWaterBody.setIsPrivate(isPrivate);
-
-     waterBodyRepository.save(foundWaterBody);
-
-     return "Update successfully";
+      return "Update successfully";
 
    }
 

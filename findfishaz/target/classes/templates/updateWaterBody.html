@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Water Body</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    
+
+    <div class="container">
+        <h2>Update Water Body Details</h2>
+        <p style="text-align: center; font-size: 0.9rem; opacity: 0.7;">Leave fields blank to retain existing information.</p>
+
+        <form th:action="@{/waterBody/updated}" method="post" style="text-align: center;">
+            
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px;">Water Body Name (Required):</label>
+                <input type="text" name="name" class="desert-dropdown" 
+                       placeholder="e.g. Canyon Lake" required 
+                       style="text-align: center; max-width: 350px;" />
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px;">New City / Settlement:</label>
+                <input type="text" name="city" class="desert-dropdown" 
+                       placeholder="Leave blank to keep old city" 
+                       style="text-align: center; max-width: 350px;" />
+            </div>
+
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px;">New Type:</label>
+                <input type="text" name="type" class="desert-dropdown" 
+                       placeholder="e.g. River, Reservoir" 
+                       style="text-align: center; max-width: 350px;" />
+            </div>
+
+            <div style="margin-bottom: 35px;">
+                <label style="display: block; margin-bottom: 8px;">Update Access Rights:</label>
+                <select name="isPrivate" class="desert-dropdown" style="max-width: 350px; text-align-last: center;">
+                    <option th:value="null">-- No Change --</option>
+                    <option value="false">Public</option>
+                    <option value="true">Private</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-link" style="cursor: pointer; width: 100%; max-width: 300px;">
+                Update Water Body
+            </button>
+            
+        </form>
+        
+        <hr style="border: 0; border-top: 1px dashed var(--ink-black); margin: 40px 0; opacity: 0.2;">
+
+        <p style="text-align: center;">
+            <a href="/" class="btn-link" style="font-size: 1rem; padding: 10px 20px;">« Back to Home</a>
+        </p>
+    </div>
+</body>
+</html>

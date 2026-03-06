@@ -63,22 +63,46 @@ public class WaterBodyController
     return message;
   }
 
-  @ResponseBody
-  @PostMapping("/update")
-  public String Update(Integer id, String name, String city, String type, Boolean isPrivate)
+  @GetMapping("/update") // URL: localhost:8080/waterBody/update
+  public String Update()
   {
-    String message = waterBodyService.update(id, name, city, type, isPrivate);
+    return "updateWaterBody";
+  }
+  
+  
+  @PostMapping("/updated")  // URL: localhost:8080/waterBody/update
+  public String Update(Model model, @RequestParam String name, @RequestParam(required = false) String city, @RequestParam(required = false) String type, @RequestParam(required = false) Boolean isPrivate)
+  {
+    Integer id = waterBodyService.getWaterBodyIdByName(name);
+    
+    String updateMessage = waterBodyService.update(id, name, city, type, isPrivate);
 
-    return message;
+    model.addAttribute("update_message", updateMessage);
+
+    return "updatedWaterBody";
   }
 
-  @ResponseBody
-  @DeleteMapping("/delete")
-  public String Delete(Integer id)
+  
+  @GetMapping("/delete")
+  public String Delete()
   {
-    String message = waterBodyService.delete(id);
 
-    return message;
+    return "deleteWaterBody";
+
+  }
+  
+  
+  @PostMapping("/deleted")
+  public String Delete(Model model, @RequestParam String name)
+  {
+    Integer id = waterBodyService.getWaterBodyIdByName(name);
+    
+    String delete_message = waterBodyService.delete(id);
+
+    model.addAttribute("deleteMessage", delete_message);
+
+    return "deletedWaterBody";
+
   }
 
   @GetMapping("/searchWaterBody")
