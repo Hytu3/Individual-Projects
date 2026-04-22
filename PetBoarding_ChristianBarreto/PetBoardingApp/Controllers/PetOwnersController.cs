@@ -73,7 +73,7 @@ namespace PetBoardingApp.Controllers
             return Content("Pet Owner ID: " + petOwner.PetOwnerId + "Name: " + petOwner.Name + "Gender: " + petOwner.Gender + "Age: " + petOwner.Age);
 
         }
-
+        [HttpPut]
         public ActionResult Update(Guid id, string name, string gender, int age)
         {
             // Connect to database

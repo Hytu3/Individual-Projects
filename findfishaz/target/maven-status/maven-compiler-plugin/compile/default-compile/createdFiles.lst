@@ -1,6 +1,7 @@
 com\findfishaz\controller\WaterBodyController.class
 com\findfishaz\repository\AdminRepository.class
 com\findfishaz\service\WaterBodyService.class
+com\findfishaz\service\FishTest.class
 com\findfishaz\controller\FishController.class
 com\findfishaz\FindFishAZApplication.class
 com\findfishaz\model\Admin.class
