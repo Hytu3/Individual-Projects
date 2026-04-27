@@ -3,6 +3,7 @@ package com.findfishaz.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ public class WaterBodyService
  private final WaterBodyRepository waterBodyRepository;
  private final FishRepository fishRepository;
 
+ @Autowired
  public WaterBodyService(WaterBodyRepository waterBodyRepository, FishRepository fishRepository)
  {
    this.waterBodyRepository = waterBodyRepository;

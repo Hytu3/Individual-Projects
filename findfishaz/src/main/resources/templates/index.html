@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Find Fish AZ</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-box">
+            <h1>Find Fish AZ</h1>
+            <h2>Explore and Search Arizona's Waters</h2>
+        </div>
+
+        <hr>
+
+        <div class="dashboard-grid">
+            <section>
+                <h3>View Records</h3>
+                
+                <p><a href="/fish/allFish" class="btn-link">See all fish</a></p>
+                <p><a href="/waterBody/allWaterBodies" class="btn-link">See all water bodies</a></p>
+            </section>
+
+            <section>
+                <h3>Search the Desert</h3>
+                <p><a href="/fish/searchFish" class="btn-link">All Fish That Live In A Specific Water Body</a></p>
+                <p><a href="/waterBody/searchWaterBody" class="btn-link">Water Bodies Containing Specific Fish</a></p>
+            </section>
+
+            <section>
+                <div th:if="${session.userAuthenticated != null}">
+                    <h3>Management</h3>
+                    <p><a href="/fish/addFish" class="btn-link copper-btn">Add New Fish</a></p>
+                    <p><a href="/waterBody/addWaterBody" class="btn-link copper-btn">Add New Water Body</a></p>
+                    <p><a href="/fish/addFishToWaterBody" class="btn-link copper-btn">Link Fish To Water Body</a></p>
+                    <p><a href="/fish/update" class="btn-link copper-btn">Update Fish Info</a></p>
+                    <p><a href="/waterBody/update" class="btn-link copper-btn">Update Water Body Info</a></p>
+                    <p><a href="/fish/delete" class="btn-link copper-btn">Delete Fish</a></p>
+                    <p><a href="/waterBody/delete" class="btn-link copper-btn">Delete Water Body</a></p>
+                    <p><a href="/fish/deleteFishFromWaterBody" class="btn-link copper-btn">Remove Fish From Water Body</a></p>
+                </div>
+            </section>
+
+            <section>
+                <div th:if="${session.userAuthenticated == null}">
+                    <h3>Administration</h3>
+                    <p><a href="/admin/showLoginPage" class="btn-link copper-btn">Admin Login</a></p>
+                </div>
+                <div th:if="${session.userAuthenticated != null}">
+                    <h3>Administration</h3>
+                    <p><a href="/admin/showLoginPage" class="btn-link copper-btn">Admin Logout</a></p>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

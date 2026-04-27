@@ -3,8 +3,8 @@ package com.findfishaz.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.findfishaz.model.Admin;
 import com.findfishaz.repository.AdminRepository;
@@ -16,11 +16,27 @@ public class AdminService
  // Inject Repository
   private final AdminRepository adminRepository;
   
+  @Autowired
   public AdminService(AdminRepository adminRepository) 
   {
       this.adminRepository = adminRepository;
   }
 
+  public Boolean login(String email, String password)
+  {
+    List<Admin> admins = adminRepository.findAll();
+
+    for (Admin admin : admins)
+    {
+      if (admin.getEmail().equals(email) && admin.getPassword().equals(password))
+      {
+        return true;
+      }
+    }
+
+    return false;
+  }
+  
   
   public String create(String name, String email, String password)
   {

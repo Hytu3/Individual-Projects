@@ -5,6 +5,7 @@ com\findfishaz\service\FishTest.class
 com\findfishaz\controller\FishController.class
 com\findfishaz\FindFishAZApplication.class
 com\findfishaz\model\Admin.class
+com\findfishaz\controller\AdminController.class
 com\findfishaz\repository\FishRepository.class
 com\findfishaz\repository\WaterBodyRepository.class
 com\findfishaz\service\AdminService.class

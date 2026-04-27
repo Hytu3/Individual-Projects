@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FindFishAZ - Administration</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+ 
+ <div class="container">
+  
+  <header>
+    <h1 class="wanted-header">Login Page</h1>
+  </header>
+
+  <form action="/admin/login" method="post" style="margin-top: 30px;">
+    
+    <p>
+        <label for="Email">Email</label><br>
+        <input type="text" id="Email" name="Email" class="desert-dropdown">
+    </p>
+
+    <p style="margin-top: 20px;">
+        <label for="Password">Password</label><br>
+        <input type="password" id="Password" name="Password" class="desert-dropdown">
+    </p>
+
+    <button type="submit" class="btn-link" style="border: none; cursor: pointer; width: 100%; max-width: 400px;">
+        Login
+    </button>
+
+  </form>
+
+  <div style="margin-top: 40px;">
+    <p>
+        <a href="admin/create" class="btn-link">Register New Admin</a>
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
+
